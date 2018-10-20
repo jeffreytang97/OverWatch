@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingActivity">
+
+    <TextView
+        android:id="@+id/settingArmTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="77dp"
+        android:text="Arm Time: " />
+
+    <TextView
+        android:id="@+id/settingDisarmTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/settingArmTextView"
+        android:layout_marginTop="134dp"
+        android:text="Disarm Time: " />
+
+    <TextView
+        android:id="@+id/settingArmTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/settingArmTextView"
+        android:layout_centerHorizontal="true"
+        android:text="7:00" />
+
+    <TextView
+        android:id="@+id/settingDisarmTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/settingDisarmTextView"
+        android:layout_centerHorizontal="true"
+        android:text="21:00" />
+
+    <Button
+        android:id="@+id/settingEditArmTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/settingArmTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="32dp"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/settingEditDisarmTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/settingDisarmTextView"
+        android:layout_alignStart="@+id/settingEditArmTimeButton"
+        android:text="Edit" />
+
+    <Switch
+        android:id="@+id/settingEditSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="231dp"
+        android:text="Unable Automatic Arm / Disarm" />
+
+    <Button
+        android:id="@+id/settingChangePasscodeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="223dp"
+        android:text="Change Passcode" />
+
+</RelativeLayout>
