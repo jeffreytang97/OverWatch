@@ -19,7 +19,7 @@ Project cloning tutorial to local machine:
 
 	4- Write this on your terminal to get the repo on your machine --> git clone https://github.com/jeffreytang97/Overwatch.git
 
-	6- Modify the README.md by adding your id next to your name for practice, use this command on terminal --> on cmd (for Windows users) --> edit README.md
+	6- Modify the README.md by adding your id next to your name for practice.
 
 	7- Save the changes.
 
