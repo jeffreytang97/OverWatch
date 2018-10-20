@@ -4,7 +4,7 @@
 
 - Jeffrey Tang 40037656
 - Lionel Hun 40028805
-- Hong Yi Wang
+- Hong Yi Wang 40034150
 - David Do
 
 
