@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--Adding 3 dot menu-->
+    <item
+        android:title="History Log"
+        android:id="@+id/historyButton"
+        app:showAsAction="never"/>
+    <item
+        android:title="Settings"
+        android:id="@+id/settingsButton"
+        app:showAsAction="never"/>
+    <item
+        android:title="Log Out"
+        android:id="@+id/logOutButton"
+        app:showAsAction="never"/>
+</menu>
