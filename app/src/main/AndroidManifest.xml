@@ -9,10 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity
-            android:name="com.example.jeffrey.overwatch.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
