@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onStart();
 
-        String aCode;
-        aCode = sharedPrefsLoginCode.getLoginCode();
+        String aCode = sharedPrefsLoginCode.getLoginCode();
 
         // If the code exist in the sharedPreferences, it means the user didn't log out yet.
-        if(aCode != null)
+        if(aCode == "")
+            return;
+        else
             goToAlarmActivity();
+
 
         // When the user log out, the code data will be erased from the sharedPreferences
     }
@@ -51,12 +53,17 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToAlarmActivity();
+                goToAlarmActivityCondition();
             }
         });
     }
 
     public void goToAlarmActivity(){
+        Intent intent = new Intent(MainActivity.this, alarmActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToAlarmActivityCondition(){
 
         String code = codeEditText.getText().toString();
 
