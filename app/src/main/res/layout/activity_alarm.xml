@@ -9,30 +9,31 @@
     <Switch
         android:id="@+id/alarmSwitch"
         android:layout_width="237dp"
-        android:layout_height="53dp"
+        android:layout_height="38dp"
         android:text="Arm/Disarm switch "
         android:textColor="#D82E0A"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintVertical_bias="0.344" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="189dp"
-        android:layout_height="39dp"
+        android:layout_height="31dp"
         android:text="Sensor Status"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.541" />
 
     <TextView
         android:id="@+id/textView4"
@@ -40,13 +41,13 @@
         android:layout_height="28dp"
         android:text="Movement detector"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643" />
+        app:layout_constraintVertical_bias="0.641" />
 
     <TextView
         android:id="@+id/movementDetectorTextView"
@@ -56,10 +57,10 @@
         android:textColor="#D82E0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.397" />
+        app:layout_constraintVertical_bias="0.322" />
 
     <TextView
         android:id="@+id/textView6"
@@ -67,78 +68,81 @@
         android:layout_height="27dp"
         android:text="Door Status"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movementDetectorTextView"
-        app:layout_constraintVertical_bias="0.28" />
-
-    <TextView
-        android:id="@+id/doorStatusTextView"
-        android:layout_width="328dp"
-        android:layout_height="29dp"
-        android:text="The door is currently closed."
-        android:textColor="#D82E0A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="543dp" />
+        app:layout_constraintVertical_bias="0.216" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/image_man"
         android:layout_width="58dp"
-        android:layout_height="57dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="149dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="149dp"
         android:layout_marginStart="18dp"
         app:layout_constraintBottom_toTopOf="@+id/movementDetectorTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.245"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.604"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/stickman" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/image_door"
         android:layout_width="49dp"
-        android:layout_height="63dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="1dp"
-        android:layout_marginEnd="213dp"
         android:layout_marginLeft="3dp"
-        android:layout_marginRight="213dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="2dp"
         app:layout_constraintBottom_toTopOf="@+id/doorStatusTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/movementDetectorTextView"
-        app:layout_constraintVertical_bias="0.811"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/door" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="395dp"
-        android:layout_height="318dp"
+        android:layout_height="258dp"
+        android:layout_marginTop="252dp"
         android:background="?android:attr/listDivider"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
-        tools:backgroundTint=""
-        tools:layout_editor_absoluteY="274dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:backgroundTint="" />
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="159dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="147dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cadenas" />
+
+    <TextView
+        android:id="@+id/doorStatusTextView"
+        android:layout_width="328dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="27dp"
+        android:text="The door is currently closed."
+        android:textColor="#D82E0A"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_door" />
 
 </android.support.constraint.ConstraintLayout>

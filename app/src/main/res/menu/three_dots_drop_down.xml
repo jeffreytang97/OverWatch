@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--Adding 3 dot menu-->
     <item
+        android:title="Alarm Activity"
+        android:id="@+id/alarmActivity"
+        app:showAsAction="never"/>
+    <item
         android:title="History Log"
         android:id="@+id/historyButton"
         app:showAsAction="never"/>
