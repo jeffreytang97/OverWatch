@@ -30,7 +30,29 @@ public class arm_alarm_Fragment extends DialogFragment {
         armFragmentSaveButton = view.findViewById(R.id.armFragmentSaveButton);
         armFragmentCancelButton = view.findViewById(R.id.armFragmentCancelButton);
 
+        armFragmentCancelButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                cancelArmFragment();
+            }
+        });
+
+        armFragmentSaveButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //For the save button function
+            }
+        });
 
         return view;
+    }
+
+    public void cancelArmFragment(){
+        getDialog().dismiss();
+    }
+
+    public void saveArmFragment(){
+        //Function to be made
+        //Will save the information inputted
     }
 }

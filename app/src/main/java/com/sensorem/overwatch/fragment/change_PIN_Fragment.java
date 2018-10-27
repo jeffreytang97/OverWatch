@@ -31,8 +31,31 @@ public class change_PIN_Fragment extends DialogFragment {
         changePasscodeSaveButton = view.findViewById(R.id.changePasscodeSaveButton);
         changePasscodeCancelButton = view.findViewById(R.id.changePasscodeCancelButton);
 
+        changePasscodeCancelButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                cancelPasscodeFragment();
+            }
+        });
+
+        changePasscodeSaveButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //For the save button
+            }
+        });
+
         return view;
 
 
+    }
+
+    public void cancelPasscodeFragment(){
+        getDialog().dismiss();
+    }
+
+    public void savePasscodeFragment(){
+        //Function to be made
+        //Will save the information inputted
     }
 }
