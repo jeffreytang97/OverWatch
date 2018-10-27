@@ -1,5 +1,6 @@
 package com.sensorem.overwatch;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,6 +40,23 @@ public class historyLogActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         // Menu item click handling
+
+        if (id == R.id.alarmActivityButton){
+            Intent alarmIntent = new Intent(this, alarmActivity.class);
+            startActivity(alarmIntent);
+        }
+        if (id == R.id.historyButton){
+            Intent historyIntent = new Intent(this, historyLogActivity.class);
+            startActivity(historyIntent);
+        }
+        if (id == R.id.settingsButton){
+            Intent settingIntent = new Intent(this, settingActivity.class);
+            startActivity(settingIntent);
+        }
+        if (id == R.id.logOutButton){
+            // Will do in the future
+            // Erase the sharedPreference object
+        }
 
         return super.onOptionsItemSelected(item);
     }

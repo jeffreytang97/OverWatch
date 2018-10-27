@@ -4,7 +4,7 @@
     <!--Adding 3 dot menu-->
     <item
         android:title="Alarm Activity"
-        android:id="@+id/alarmActivity"
+        android:id="@+id/alarmActivityButton"
         app:showAsAction="never"/>
     <item
         android:title="History Log"
