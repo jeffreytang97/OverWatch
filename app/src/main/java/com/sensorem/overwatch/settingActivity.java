@@ -5,9 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.sensorem.overwatch.fragment.arm_alarm_Fragment;
+import com.sensorem.overwatch.fragment.change_PIN_Fragment;
+import com.sensorem.overwatch.fragment.disarm_alarm_fragment;
 
 public class settingActivity extends AppCompatActivity {
 
@@ -41,6 +46,29 @@ public class settingActivity extends AppCompatActivity {
         settingEditDisarmTimeButton = findViewById(R.id.settingEditDisarmTimeButton);
         settingEditSwitch = findViewById(R.id.settingEditSwitch);
         settingChangePasscodeButton = findViewById(R.id.settingChangePasscodeButton);
+
+        settingEditArmTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editArmTime();
+            }
+        });
+
+        settingEditDisarmTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editDisarmTime();
+            }
+        });
+
+        settingChangePasscodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editPasscode();
+            }
+        });
+
+
 
     }
 
@@ -79,5 +107,20 @@ public class settingActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void editArmTime(){
+        arm_alarm_Fragment dialog = new arm_alarm_Fragment();
+        dialog.show(getSupportFragmentManager(), "Edit Arm time.");
+    }
+
+    public void editDisarmTime(){
+        disarm_alarm_fragment dialog = new disarm_alarm_fragment();
+        dialog.show(getSupportFragmentManager(), "Edit Disarm time.");
+    }
+
+    public void editPasscode(){
+        change_PIN_Fragment dialog = new change_PIN_Fragment();
+        dialog.show(getSupportFragmentManager(), "Edit passcode.");
     }
 }
