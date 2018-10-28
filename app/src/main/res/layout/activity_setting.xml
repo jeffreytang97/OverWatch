@@ -69,7 +69,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/settingArmTextView"
         android:layout_marginTop="173dp"
-        android:text="Auto Arm / Disarm"
+        android:text="Auto Disarm / Arm"
         android:textSize="16dp" />
 
     <Button

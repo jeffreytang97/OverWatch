@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import com.sensorem.overwatch.R;
 
-public class disarm_alarmTime_fragment extends DialogFragment {
+public class disarm_alarm_fragment extends DialogFragment {
 
     private EditText disarmFragmentHourEditText;
     private EditText disarmFragmentMinuteEditText;
@@ -31,7 +31,30 @@ public class disarm_alarmTime_fragment extends DialogFragment {
         disarmFragmentSaveButton = view.findViewById(R.id.disarmFragmentSaveButton);
         disarmFragmentCancelButton = view.findViewById(R.id.disarmFragmentCancelButton);
 
+        disarmFragmentCancelButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                cancelDisarmFragment();
+            }
+        });
+
+        disarmFragmentSaveButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //For the save button
+            }
+        });
+
         return view;
 
+    }
+
+    public void cancelDisarmFragment(){
+        getDialog().dismiss();
+    }
+
+    public void saveDisarmFragment(){
+        //Function to be made
+        //Will save the information inputted
     }
 }

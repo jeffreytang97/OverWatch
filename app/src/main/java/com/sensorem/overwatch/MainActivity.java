@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class loginActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     protected EditText codeEditText;
     protected Button loginButton;
@@ -20,7 +20,7 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         setupUI();
     }
@@ -44,7 +44,7 @@ public class loginActivity extends AppCompatActivity {
     protected void setupUI(){
 
         // initialize shared preference object
-        sharedPrefsLoginCode = new codesSharedPreferences(loginActivity.this);
+        sharedPrefsLoginCode = new codesSharedPreferences(MainActivity.this);
 
         codeEditText = findViewById(R.id.codeEditText);
         loginButton = findViewById(R.id.loginButton);
@@ -58,7 +58,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void goToAlarmActivity(){
-        Intent intent = new Intent(loginActivity.this, alarmActivity.class);
+        Intent intent = new Intent(MainActivity.this, alarmActivity.class);
         startActivity(intent);
     }
 
@@ -68,7 +68,7 @@ public class loginActivity extends AppCompatActivity {
 
         if (codeEditText.getText().toString().equals(theCode)){
             sharedPrefsLoginCode.saveLoginCode(code); // save the code somewhere
-            Intent loginIntent = new Intent(loginActivity.this, alarmActivity.class);
+            Intent loginIntent = new Intent(MainActivity.this, alarmActivity.class);
             startActivity(loginIntent);
         }
         else{
