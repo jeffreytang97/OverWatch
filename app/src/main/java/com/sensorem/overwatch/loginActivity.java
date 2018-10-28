@@ -1,7 +1,6 @@
 package com.sensorem.overwatch;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class loginActivity extends AppCompatActivity {
 
     protected EditText codeEditText;
     protected Button loginButton;
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         setupUI();
     }
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void setupUI(){
 
         // initialize shared preference object
-        sharedPrefsLoginCode = new codesSharedPreferences(MainActivity.this);
+        sharedPrefsLoginCode = new codesSharedPreferences(loginActivity.this);
 
         codeEditText = findViewById(R.id.codeEditText);
         loginButton = findViewById(R.id.loginButton);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToAlarmActivity(){
-        Intent intent = new Intent(MainActivity.this, alarmActivity.class);
+        Intent intent = new Intent(loginActivity.this, alarmActivity.class);
         startActivity(intent);
     }
 
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (codeEditText.getText().toString().equals(theCode)){
             sharedPrefsLoginCode.saveLoginCode(code); // save the code somewhere
-            Intent loginIntent = new Intent(MainActivity.this, alarmActivity.class);
+            Intent loginIntent = new Intent(loginActivity.this, alarmActivity.class);
             startActivity(loginIntent);
         }
         else{

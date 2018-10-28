@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.sensorem.overwatch.R;
 
-public class arm_alarm_Fragment extends DialogFragment {
+public class arm_alarmTime_Fragment extends DialogFragment {
 
     private EditText armFragmentHourEditText;
     private EditText armFragmentMinuteEditText;

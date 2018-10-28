@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import com.sensorem.overwatch.R;
 
-public class disarm_alarm_fragment extends DialogFragment {
+public class disarm_alarmTime_fragment extends DialogFragment {
 
     private EditText disarmFragmentHourEditText;
     private EditText disarmFragmentMinuteEditText;
