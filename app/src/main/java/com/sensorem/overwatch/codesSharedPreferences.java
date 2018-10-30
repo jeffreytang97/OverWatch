@@ -18,7 +18,7 @@ public class codesSharedPreferences {
                 Context.MODE_PRIVATE );
     }
 
-    public void saveLoginCode(String code)
+    public void setLoginCode(String code)
     {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(SHARED_CODE,code);
