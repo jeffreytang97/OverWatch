@@ -14,6 +14,7 @@ public class alarmActivity extends AppCompatActivity {
     protected Switch theSwitch;
     protected TextView movementText;
     protected TextView doorText;
+    protected String isLogin = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,9 @@ public class alarmActivity extends AppCompatActivity {
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){
-            // Will do in the future
-            // Erase the sharedPreference object
+            Intent logoutIntent = new Intent(this, MainActivity.class);
+            logoutIntent.putExtra("loginState", isLogin);
+            startActivity(logoutIntent);
         }
 
         return super.onOptionsItemSelected(item);

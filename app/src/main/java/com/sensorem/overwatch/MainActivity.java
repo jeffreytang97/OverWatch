@@ -12,8 +12,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected EditText codeEditText;
     protected Button loginButton;
-
+    public Boolean isLogin = false;
     public String theCode = "jeff131313";
+    protected String aCode;
 
     codesSharedPreferences sharedPrefsLoginCode;
 
@@ -29,16 +30,11 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onStart();
 
-        String aCode = sharedPrefsLoginCode.getLoginCode();
-
-        // If the code exist in the sharedPreferences, it means the user didn't log out yet.
-        if(aCode == "")
-            return;
-        else
-            goToAlarmActivity();
-
-
         // When the user log out, the code data will be erased from the sharedPreferences
+    }
+
+    protected void onResume(){
+        super.onResume();
     }
 
     protected void setupUI(){
@@ -48,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         codeEditText = findViewById(R.id.codeEditText);
         loginButton = findViewById(R.id.loginButton);
+        sharedPrefsLoginCode.setLoginCode(theCode); // save the code somewhere for future feature (change code example)
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToAlarmActivityCondition(){
 
-        String code = codeEditText.getText().toString();
+        String code = sharedPrefsLoginCode.getLoginCode();
 
-        if (codeEditText.getText().toString().equals(theCode)){
-            sharedPrefsLoginCode.saveLoginCode(code); // save the code somewhere
+        if (codeEditText.getText().toString().equals(code)){
             Intent loginIntent = new Intent(MainActivity.this, alarmActivity.class);
             startActivity(loginIntent);
         }
