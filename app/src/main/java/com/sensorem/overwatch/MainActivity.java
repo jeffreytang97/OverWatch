@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected EditText codeEditText;
     protected Button loginButton;
     public String theCode = "jeff131313";
-    protected String armCode;
 
     private CodesSharedPreferences sharedPrefsLoginCode;
 
@@ -61,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToAlarmActivityCondition(){
-
-        //String code = sharedPrefsLoginCode.getLoginCode(); NO NEED
 
         if (codeEditText.getText().toString().equals(theCode)){
             sharedPrefsLoginCode.setIsLogged(true);

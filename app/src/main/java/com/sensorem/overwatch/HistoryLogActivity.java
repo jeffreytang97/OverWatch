@@ -57,9 +57,9 @@ public class HistoryLogActivity extends AppCompatActivity {
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){
-          codesSharedPreferences.setIsLogged(false);
-          Intent logoutIntent = new Intent(this, MainActivity.class);
-          startActivity(logoutIntent);
+            codesSharedPreferences.setIsLogged(false);
+            Intent logoutIntent = new Intent(this, MainActivity.class);
+            startActivity(logoutIntent);
         }
 
         return super.onOptionsItemSelected(item);

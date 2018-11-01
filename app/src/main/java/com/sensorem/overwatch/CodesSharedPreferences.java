@@ -3,7 +3,7 @@ package com.sensorem.overwatch;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-// This class will be used to save the code for login and the passcodes for arm / disarm
+// This class will be used to save the code for login and the passcode for arm / disarm
 
 public class CodesSharedPreferences
 {
