@@ -25,6 +25,8 @@ public class settingActivity extends AppCompatActivity {
     private Switch settingEditSwitch;
     private Button settingChangePasscodeButton;
 
+    private codesSharedPreferences codesSharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,8 @@ public class settingActivity extends AppCompatActivity {
         settingEditDisarmTimeButton = findViewById(R.id.settingEditDisarmTimeButton);
         settingEditSwitch = findViewById(R.id.settingEditSwitch);
         settingChangePasscodeButton = findViewById(R.id.settingChangePasscodeButton);
+
+        codesSharedPreferences = new codesSharedPreferences(settingActivity.this);
 
         settingEditArmTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,8 +106,9 @@ public class settingActivity extends AppCompatActivity {
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){
-            // Will do in the future
-            // Erase the sharedPreference object
+            codesSharedPreferences.setIsLogged(false);
+            Intent logoutIntent = new Intent(this, MainActivity.class);
+            startActivity(logoutIntent);
         }
 
         return super.onOptionsItemSelected(item);

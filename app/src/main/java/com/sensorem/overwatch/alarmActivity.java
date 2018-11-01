@@ -14,7 +14,8 @@ public class alarmActivity extends AppCompatActivity {
     protected Switch theSwitch;
     protected TextView movementText;
     protected TextView doorText;
-    protected String isLogin = "false";
+
+    private codesSharedPreferences codesSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class alarmActivity extends AppCompatActivity {
         theSwitch = findViewById(R.id.alarmSwitch);
         movementText = findViewById(R.id.movementDetectorTextView);
         doorText = findViewById(R.id.doorStatusTextView);
+        codesSharedPreferences = new codesSharedPreferences(alarmActivity.this);
     }
 
     //To show the 3 dots button on the action bar
@@ -62,8 +64,8 @@ public class alarmActivity extends AppCompatActivity {
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){
+            codesSharedPreferences.setIsLogged(false);
             Intent logoutIntent = new Intent(this, MainActivity.class);
-            logoutIntent.putExtra("loginState", isLogin);
             startActivity(logoutIntent);
         }
 

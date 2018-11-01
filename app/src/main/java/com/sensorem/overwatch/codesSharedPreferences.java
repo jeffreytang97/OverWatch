@@ -9,6 +9,7 @@ public class codesSharedPreferences {
 
     public static final String SHARED_CODE = "sharedLoginCode";
     public static final String SHARED_PASSCODE = "sharedPasscode";
+    public static final String IS_LOGGED = "isLogged";
 
     protected SharedPreferences sharedPreferences;
 
@@ -32,6 +33,13 @@ public class codesSharedPreferences {
         editor.apply();
     }
 
+    public void setIsLogged(boolean truth)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(IS_LOGGED, truth);
+        editor.apply();
+    }
+
     public String getLoginCode()
     {
         return sharedPreferences.getString(SHARED_CODE, null);
@@ -40,5 +48,10 @@ public class codesSharedPreferences {
     public String getArmDisarmPasscode()
     {
         return sharedPreferences.getString(SHARED_PASSCODE, null);
+    }
+
+    public boolean getIsLogged()
+    {
+        return sharedPreferences.getBoolean(IS_LOGGED, false);
     }
 }
