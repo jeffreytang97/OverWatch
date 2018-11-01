@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "294864005722",
+    "firebase_url": "https://iotalarmsystem.firebaseio.com",
+    "project_id": "iotalarmsystem",
+    "storage_bucket": "iotalarmsystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294864005722:android:0649f634b7983a6d",
+        "android_client_info": {
+          "package_name": "com.sensorem.overwatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294864005722-0ka5d0gko766ufo5roo78slpbbh1an6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sensorem.overwatch",
+            "certificate_hash": "ac8eac9ff4298836018fc129c8c6d50e442a2aba"
+          }
+        },
+        {
+          "client_id": "294864005722-ndpbfelemrl81ogp7lduqao29njlkabk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu5_ZhZ_qrgANljlPIdDnep4wxPkeKIms"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294864005722-ndpbfelemrl81ogp7lduqao29njlkabk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
