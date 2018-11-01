@@ -7,15 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class alarmActivity extends AppCompatActivity {
+public class AlarmActivity extends AppCompatActivity {
 
     protected Switch theSwitch;
     protected TextView movementText;
     protected TextView doorText;
 
-    private codesSharedPreferences codesSharedPreferences;
+    private CodesSharedPreferences codesSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class alarmActivity extends AppCompatActivity {
         theSwitch = findViewById(R.id.alarmSwitch);
         movementText = findViewById(R.id.movementDetectorTextView);
         doorText = findViewById(R.id.doorStatusTextView);
-        codesSharedPreferences = new codesSharedPreferences(alarmActivity.this);
+        codesSharedPreferences = new CodesSharedPreferences(AlarmActivity.this);
     }
 
     //To show the 3 dots button on the action bar
@@ -52,15 +51,15 @@ public class alarmActivity extends AppCompatActivity {
         // Menu item click handling
 
         if (id == R.id.alarmActivityButton){
-            Intent alarmIntent = new Intent(this, alarmActivity.class);
+            Intent alarmIntent = new Intent(this, AlarmActivity.class);
             startActivity(alarmIntent);
         }
         if (id == R.id.historyButton){
-            Intent historyIntent = new Intent(this, historyLogActivity.class);
+            Intent historyIntent = new Intent(this, HistoryLogActivity.class);
             startActivity(historyIntent);
         }
         if (id == R.id.settingsButton){
-            Intent settingIntent = new Intent(this, settingActivity.class);
+            Intent settingIntent = new Intent(this, SettingActivity.class);
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){

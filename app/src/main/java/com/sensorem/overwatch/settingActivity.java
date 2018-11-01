@@ -14,7 +14,7 @@ import com.sensorem.overwatch.fragment.arm_alarm_Fragment;
 import com.sensorem.overwatch.fragment.change_PIN_Fragment;
 import com.sensorem.overwatch.fragment.disarm_alarm_fragment;
 
-public class settingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     private TextView settingArmTextView;
     private TextView settingDisarmTextView;
@@ -25,7 +25,7 @@ public class settingActivity extends AppCompatActivity {
     private Switch settingEditSwitch;
     private Button settingChangePasscodeButton;
 
-    private codesSharedPreferences codesSharedPreferences;
+    private CodesSharedPreferences codesSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class settingActivity extends AppCompatActivity {
         settingEditSwitch = findViewById(R.id.settingEditSwitch);
         settingChangePasscodeButton = findViewById(R.id.settingChangePasscodeButton);
 
-        codesSharedPreferences = new codesSharedPreferences(settingActivity.this);
+        codesSharedPreferences = new CodesSharedPreferences(SettingActivity.this);
 
         settingEditArmTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,15 +94,15 @@ public class settingActivity extends AppCompatActivity {
         // Menu item click handling
 
         if (id == R.id.alarmActivityButton){
-            Intent alarmIntent = new Intent(this, alarmActivity.class);
+            Intent alarmIntent = new Intent(this, AlarmActivity.class);
             startActivity(alarmIntent);
         }
         if (id == R.id.historyButton){
-            Intent historyIntent = new Intent(this, historyLogActivity.class);
+            Intent historyIntent = new Intent(this, HistoryLogActivity.class);
             startActivity(historyIntent);
         }
         if (id == R.id.settingsButton){
-            Intent settingIntent = new Intent(this, settingActivity.class);
+            Intent settingIntent = new Intent(this, SettingActivity.class);
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){

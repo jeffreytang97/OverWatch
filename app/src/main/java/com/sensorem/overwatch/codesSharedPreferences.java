@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 
 // This class will be used to save the code for login and the passcodes for arm / disarm
 
-public class codesSharedPreferences {
+public class CodesSharedPreferences
+{
 
     public static final String SHARED_CODE = "sharedLoginCode";
     public static final String SHARED_PASSCODE = "sharedPasscode";
@@ -13,7 +14,7 @@ public class codesSharedPreferences {
 
     protected SharedPreferences sharedPreferences;
 
-    public codesSharedPreferences(Context context)
+    public CodesSharedPreferences(Context context)
     {
         sharedPreferences = context.getSharedPreferences("CodesPreference",
                 Context.MODE_PRIVATE );

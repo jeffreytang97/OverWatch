@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public String theCode = "jeff131313";
     protected String armCode;
 
-    private codesSharedPreferences sharedPrefsLoginCode;
+    private CodesSharedPreferences sharedPrefsLoginCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void setupUI(){
 
         // initialize shared preference object
-        sharedPrefsLoginCode = new codesSharedPreferences(MainActivity.this);
+        sharedPrefsLoginCode = new CodesSharedPreferences(MainActivity.this);
 
         codeEditText = findViewById(R.id.codeEditText);
         loginButton = findViewById(R.id.loginButton);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToAlarmActivity(){
-        Intent intent = new Intent(MainActivity.this, alarmActivity.class);
+        Intent intent = new Intent(MainActivity.this, AlarmActivity.class);
         startActivity(intent);
     }
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (codeEditText.getText().toString().equals(theCode)){
             sharedPrefsLoginCode.setIsLogged(true);
-            Intent loginIntent = new Intent(MainActivity.this, alarmActivity.class);
+            Intent loginIntent = new Intent(MainActivity.this, AlarmActivity.class);
             startActivity(loginIntent);
         }
         else{

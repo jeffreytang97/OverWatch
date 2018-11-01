@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".alarmActivity" />
-        <activity android:name=".historyLogActivity"></activity>
-        <activity android:name=".settingActivity"></activity>
+        <activity android:name=".AlarmActivity" />
+        <activity android:name=".HistoryLogActivity"></activity>
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>
