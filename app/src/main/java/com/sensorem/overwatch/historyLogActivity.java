@@ -7,9 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class historyLogActivity extends AppCompatActivity {
+public class HistoryLogActivity extends AppCompatActivity {
 
     protected ListView historyList;
+
+    private CodesSharedPreferences codesSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class historyLogActivity extends AppCompatActivity {
 
     protected void setupUI(){
         historyList = findViewById(R.id.historyListView);
+        codesSharedPreferences = new CodesSharedPreferences(HistoryLogActivity.this);
     }
 
     //To show the 3 dots button on the action bar
@@ -42,20 +45,21 @@ public class historyLogActivity extends AppCompatActivity {
         // Menu item click handling
 
         if (id == R.id.alarmActivityButton){
-            Intent alarmIntent = new Intent(this, alarmActivity.class);
+            Intent alarmIntent = new Intent(this, AlarmActivity.class);
             startActivity(alarmIntent);
         }
         if (id == R.id.historyButton){
-            Intent historyIntent = new Intent(this, historyLogActivity.class);
+            Intent historyIntent = new Intent(this, HistoryLogActivity.class);
             startActivity(historyIntent);
         }
         if (id == R.id.settingsButton){
-            Intent settingIntent = new Intent(this, settingActivity.class);
+            Intent settingIntent = new Intent(this, SettingActivity.class);
             startActivity(settingIntent);
         }
         if (id == R.id.logOutButton){
-            // Will do in the future
-            // Erase the sharedPreference object
+          codesSharedPreferences.setIsLogged(false);
+          Intent logoutIntent = new Intent(this, MainActivity.class);
+          startActivity(logoutIntent);
         }
 
         return super.onOptionsItemSelected(item);

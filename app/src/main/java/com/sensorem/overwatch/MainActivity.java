@@ -12,11 +12,10 @@ public class MainActivity extends AppCompatActivity {
 
     protected EditText codeEditText;
     protected Button loginButton;
-    public Boolean isLogin = false;
     public String theCode = "jeff131313";
-    protected String aCode;
+    protected String armCode;
 
-    codesSharedPreferences sharedPrefsLoginCode;
+    private CodesSharedPreferences sharedPrefsLoginCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         // When the user log out, the code data will be erased from the sharedPreferences
+        if(sharedPrefsLoginCode.getIsLogged()==true)
+            goToAlarmActivity();
     }
 
     protected void onResume(){
@@ -40,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
     protected void setupUI(){
 
         // initialize shared preference object
-        sharedPrefsLoginCode = new codesSharedPreferences(MainActivity.this);
+        sharedPrefsLoginCode = new CodesSharedPreferences(MainActivity.this);
 
         codeEditText = findViewById(R.id.codeEditText);
         loginButton = findViewById(R.id.loginButton);
-        sharedPrefsLoginCode.setLoginCode(theCode); // save the code somewhere for future feature (change code example)
+        //sharedPrefsLoginCode.setLoginCode(theCode); // save the code somewhere for future feature (change code example) NOT NEEDED
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,16 +56,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToAlarmActivity(){
-        Intent intent = new Intent(MainActivity.this, alarmActivity.class);
+        Intent intent = new Intent(MainActivity.this, AlarmActivity.class);
         startActivity(intent);
     }
 
     public void goToAlarmActivityCondition(){
 
-        String code = sharedPrefsLoginCode.getLoginCode();
+        //String code = sharedPrefsLoginCode.getLoginCode(); NO NEED
 
-        if (codeEditText.getText().toString().equals(code)){
-            Intent loginIntent = new Intent(MainActivity.this, alarmActivity.class);
+        if (codeEditText.getText().toString().equals(theCode)){
+            sharedPrefsLoginCode.setIsLogged(true);
+            Intent loginIntent = new Intent(MainActivity.this, AlarmActivity.class);
             startActivity(loginIntent);
         }
         else{
