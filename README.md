@@ -5,7 +5,7 @@
 - Jeffrey Tang 40037656
 - Lionel Hun 40028805
 - Hong Yi Wang 40034150
-- David Do
+- David Do 40035191
 
 
 Project cloning tutorial to local machine:
