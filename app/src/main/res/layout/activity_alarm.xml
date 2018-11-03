@@ -111,7 +111,7 @@
     <View
         android:id="@+id/divider2"
         android:layout_width="395dp"
-        android:layout_height="258dp"
+        android:layout_height="306dp"
         android:layout_marginTop="252dp"
         android:background="?android:attr/listDivider"
         android:visibility="visible"
