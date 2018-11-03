@@ -1,6 +1,7 @@
 package com.sensorem.overwatch;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,10 +12,10 @@ import android.widget.TextView;
 public class AlarmActivity extends AppCompatActivity {
 
     protected Switch theSwitch;
-    protected TextView movementText;
-    protected TextView doorText;
-
+    protected TextView movementTextView, doorTextView;
+    protected String statusDoor, statusMotion;
     private CodesSharedPreferences codesSharedPreferences;
+    private SensorsStatus sensors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +23,51 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
 
         getSupportActionBar().setTitle("Alarm Activity");
-
         setupUI();
+
+        doorStatusDisplay();
+        motionStatusDisplay();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
     }
 
     protected void setupUI(){
         theSwitch = findViewById(R.id.alarmSwitch);
-        movementText = findViewById(R.id.movementDetectorTextView);
-        doorText = findViewById(R.id.doorStatusTextView);
+        movementTextView = findViewById(R.id.movementDetectorTextView);
+        doorTextView = findViewById(R.id.doorStatusTextView);
         codesSharedPreferences = new CodesSharedPreferences(AlarmActivity.this);
+        sensors = new SensorsStatus(AlarmActivity.this);
+    }
+
+    public void doorStatusDisplay(){
+
+        // This part is only for testing purpose with the cloud for now
+
+        if (sensors.getDoorOpened()){
+            statusDoor = "The door is currently opened. (true)";
+            doorTextView.setText(statusDoor);
+        }
+        else{
+            statusDoor = "The door is currently closed. (false)";
+            doorTextView.setText(statusDoor);
+        }
+    }
+
+    public void motionStatusDisplay(){
+
+        // This part is only for testing purpose with the cloud for now
+
+        if (sensors.getMotionDetected()){
+            statusMotion = "Movement detected. (true)";
+            movementTextView.setText(statusMotion);
+        }
+        else{
+            statusMotion = "No movement detected. (false)";
+            movementTextView.setText(statusMotion);
+        }
     }
 
     //To show the 3 dots button on the action bar
