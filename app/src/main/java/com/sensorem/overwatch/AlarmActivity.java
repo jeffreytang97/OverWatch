@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AlarmActivity extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Alarm Activity");
         setupUI();
+        setupSwitch();
 
         doorStatusDisplay();
         motionStatusDisplay();
@@ -106,5 +109,18 @@ public class AlarmActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setupSwitch()
+    {
+        theSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if(isChecked) Toast.makeText(AlarmActivity.this, "Alarm On", Toast.LENGTH_SHORT).show();
+                if(!isChecked) Toast.makeText(AlarmActivity.this, "Alarm Off", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
