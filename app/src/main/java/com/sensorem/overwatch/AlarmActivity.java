@@ -1,11 +1,18 @@
 package com.sensorem.overwatch;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -13,7 +20,10 @@ import android.widget.Toast;
 
 public class AlarmActivity extends AppCompatActivity {
 
-    protected Switch theSwitch;
+    private static final String TAG = "Alarm Activity";
+
+    //protected Switch theSwitch;
+    protected Button armButton, disarmButton;
     protected TextView movementTextView, doorTextView;
     protected String statusDoor, statusMotion;
     private CodesSharedPreferences codesSharedPreferences;
@@ -26,7 +36,8 @@ public class AlarmActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Alarm Activity");
         setupUI();
-        setupSwitch();
+        setupButtons();
+        //setupSwitch();
 
         doorStatusDisplay();
         motionStatusDisplay();
@@ -38,7 +49,9 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
     protected void setupUI(){
-        theSwitch = findViewById(R.id.alarmSwitch);
+        //theSwitch = findViewById(R.id.alarmSwitch);
+        armButton = findViewById(R.id.armButton);
+        disarmButton = findViewById(R.id.diarmButton);
         movementTextView = findViewById(R.id.movementDetectorTextView);
         doorTextView = findViewById(R.id.doorStatusTextView);
         codesSharedPreferences = new CodesSharedPreferences(AlarmActivity.this);
@@ -111,16 +124,28 @@ public class AlarmActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setupSwitch()
+    public void setupButtons()
     {
-        theSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        armButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            public void onClick(View v)
             {
-                if(isChecked) Toast.makeText(AlarmActivity.this, "Alarm On", Toast.LENGTH_SHORT).show();
-                if(!isChecked) Toast.makeText(AlarmActivity.this, "Alarm Off", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Alarm Armed");
+                Toast.makeText(AlarmActivity.this, "Alarm Armed", Toast.LENGTH_SHORT).show();
             }
         });
+
+        disarmButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d(TAG, "Alarm Disarmed");
+                Toast.makeText(AlarmActivity.this, "Alarm Disarmed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
 }

@@ -2,8 +2,11 @@ package com.sensorem.overwatch;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class SensorsStatus {
+
+    private static final String TAG = "Sensor Status";
 
     // this class is made to store the status of the sensors in Real-Time
 
@@ -22,6 +25,7 @@ public class SensorsStatus {
     }
 
     public void setDoorOpened(Boolean isDoorOpened) {
+        Log.d(TAG, "Door status changed");
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(SHARED_DOOR, isDoorOpened);
         editor.apply();
@@ -32,6 +36,7 @@ public class SensorsStatus {
     }
 
     public void setMotionDetected(Boolean isMotionDetected) {
+        Log.d(TAG, "Motion status changed");
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(SHARED_MOTION, isMotionDetected);
         editor.apply();

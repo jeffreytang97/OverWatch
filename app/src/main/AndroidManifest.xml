@@ -21,6 +21,8 @@
         <activity android:name=".AlarmActivity" />
         <activity android:name=".HistoryLogActivity"></activity>
         <activity android:name=".SettingActivity"></activity>
+
+        <receiver android:name=".AlarmTriggerReceiver"></receiver>
     </application>
 
 </manifest>
