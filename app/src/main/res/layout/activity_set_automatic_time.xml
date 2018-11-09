@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetAutomaticTime">
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="69dp"
+        android:background="?android:attr/listDivider" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="140dp"
+        android:background="?android:attr/listDivider" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="210dp"
+        android:background="?android:attr/listDivider" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="?android:attr/listDivider" />
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="210dp"
+        android:background="?android:attr/listDivider" />
+
+    <View
+        android:id="@+id/divider10"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="140dp"
+        android:background="?android:attr/listDivider" />
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="70dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textMonday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="28dp"
+        android:text="Monday" />
+
+    <EditText
+        android:id="@+id/armMonday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textMonday"
+        android:layout_toStartOf="@+id/textView9"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textMonday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmMonday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textMonday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView9"
+        android:ems="10"
+        android:hint="Disarm"
+        android:focusable="false"
+        android:inputType="time" />
+
+    <TextView
+        android:id="@+id/textTuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="98dp"
+        android:text="Tuesday" />
+
+    <EditText
+        android:id="@+id/armTuesday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textTuesday"
+        android:layout_toStartOf="@+id/textView10"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textTuesday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmTuesday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textTuesday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView10"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Disarm" />
+
+    <TextView
+        android:id="@+id/textWednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="168dp"
+        android:text="Wednesday" />
+
+    <EditText
+        android:id="@+id/armWednesday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textWednesday"
+        android:layout_toStartOf="@+id/textView11"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textWednesday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmWednesday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textWednesday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView11"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Disarm" />
+
+    <TextView
+        android:id="@+id/textThursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="238dp"
+        android:text="Thursday" />
+
+    <EditText
+        android:id="@+id/armThursday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textThursday"
+        android:layout_toStartOf="@+id/textView12"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textThursday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmThursday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textThursday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView12"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Disarm" />
+
+    <TextView
+        android:id="@+id/textFriday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="310dp"
+        android:text="Friday" />
+
+    <EditText
+        android:id="@+id/armFriday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textFriday"
+        android:layout_toStartOf="@+id/textView13"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textFriday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmFriday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textFriday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView13"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Disarm" />
+
+    <TextView
+        android:id="@+id/textSaturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="378dp"
+        android:text="Saturday" />
+
+    <EditText
+        android:id="@+id/armSaturday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textSaturday"
+        android:layout_toStartOf="@+id/textView14"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textSaturday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmSaturday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textSaturday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView14"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Disarm" />
+
+    <TextView
+        android:id="@+id/textSunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="448dp"
+        android:text="Sunday" />
+
+    <EditText
+        android:id="@+id/armSunday"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textSunday"
+        android:layout_toStartOf="@+id/textView15"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Arm" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textSunday"
+        android:layout_marginEnd="133dp"
+        android:text="TO" />
+
+    <EditText
+        android:id="@+id/disarmSunday"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textSunday"
+        android:layout_marginStart="-133dp"
+        android:layout_toEndOf="@+id/textView15"
+        android:ems="10"
+        android:inputType="time"
+        android:focusable="false"
+        android:hint="Disarm" />
+</RelativeLayout>
