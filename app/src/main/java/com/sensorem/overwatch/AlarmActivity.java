@@ -124,6 +124,7 @@ public class AlarmActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton){
             codesSharedPreferences.setIsLogged(false);
+            armStatusSharedPreferences.setArmStatus(false);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }

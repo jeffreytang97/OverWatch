@@ -3,13 +3,12 @@ package com.sensorem.overwatch;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.SimpleCursorTreeAdapter;
 
 public class ArmStatusSharedPreferences
 {
   private static final String TAG = "ArmStatusPreferences";
 
-  public static final String IS_ARMED = "isArmed";
+  private static final String IS_ARMED = "isArmed";
 
   protected SharedPreferences sharedPreferences;
 
