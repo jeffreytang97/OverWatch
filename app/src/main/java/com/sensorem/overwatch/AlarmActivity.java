@@ -24,10 +24,11 @@ public class AlarmActivity extends AppCompatActivity {
 
     //protected Switch theSwitch;
     protected Button armButton, disarmButton;
-    protected TextView movementTextView, doorTextView;
+    protected TextView movementTextView, doorTextView, alarmStatusTextView;
     protected String statusDoor, statusMotion;
     private CodesSharedPreferences codesSharedPreferences;
     private SensorsStatus sensors;
+    private ArmStatusSharedPreferences armStatusSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ public class AlarmActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Alarm Activity");
         setupUI();
         setupButtons();
-        //setupSwitch();
 
         doorStatusDisplay();
         motionStatusDisplay();
@@ -54,8 +54,15 @@ public class AlarmActivity extends AppCompatActivity {
         disarmButton = findViewById(R.id.diarmButton);
         movementTextView = findViewById(R.id.movementDetectorTextView);
         doorTextView = findViewById(R.id.doorStatusTextView);
+        alarmStatusTextView = findViewById(R.id.alarmStatusTextView);
         codesSharedPreferences = new CodesSharedPreferences(AlarmActivity.this);
         sensors = new SensorsStatus(AlarmActivity.this);
+        armStatusSharedPreferences = new ArmStatusSharedPreferences(AlarmActivity.this);
+
+        if(armStatusSharedPreferences.getArmStatus())
+            alarmStatusTextView.setText("Alarm is Armed");
+        else
+            alarmStatusTextView.setText("Alarm is Disarmed");
     }
 
     public void doorStatusDisplay(){
@@ -133,6 +140,8 @@ public class AlarmActivity extends AppCompatActivity {
             {
                 Log.d(TAG, "Alarm Armed");
                 Toast.makeText(AlarmActivity.this, "Alarm Armed", Toast.LENGTH_SHORT).show();
+                armStatusSharedPreferences.setArmStatus(true);
+                alarmStatusTextView.setText("Alarm is Armed");
             }
         });
 
@@ -143,6 +152,8 @@ public class AlarmActivity extends AppCompatActivity {
             {
                 Log.d(TAG, "Alarm Disarmed");
                 Toast.makeText(AlarmActivity.this, "Alarm Disarmed", Toast.LENGTH_SHORT).show();
+                armStatusSharedPreferences.setArmStatus(false);
+                alarmStatusTextView.setText("Alarm is Disarmed");
             }
         });
 

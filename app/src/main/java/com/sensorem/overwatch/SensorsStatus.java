@@ -21,7 +21,7 @@ public class SensorsStatus {
     }
 
     public Boolean getDoorOpened() {
-        return sharedPreferences.getBoolean(SHARED_DOOR, true);
+        return sharedPreferences.getBoolean(SHARED_DOOR, false);
     }
 
     public void setDoorOpened(Boolean isDoorOpened) {
@@ -32,7 +32,7 @@ public class SensorsStatus {
     }
 
     public Boolean getMotionDetected() {
-        return sharedPreferences.getBoolean(SHARED_MOTION, true);
+        return sharedPreferences.getBoolean(SHARED_MOTION, false);
     }
 
     public void setMotionDetected(Boolean isMotionDetected) {

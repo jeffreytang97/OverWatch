@@ -18,6 +18,7 @@ public class CloudDatabase extends android.app.Application {
 
     Firebase doorRef, motionRef;
     SensorsStatus status;
+    ArmStatusSharedPreferences armStatusSharedPreferences;
 
     @Override
     public void onCreate(){
@@ -27,6 +28,7 @@ public class CloudDatabase extends android.app.Application {
         doorRef = new Firebase("https://iotalarmsystem.firebaseio.com/doorOpen");
         motionRef = new Firebase("https://iotalarmsystem.firebaseio.com/motionDetected");
         status = new SensorsStatus(CloudDatabase.this);
+        armStatusSharedPreferences = new ArmStatusSharedPreferences(CloudDatabase.this);
         getSensorStatus();
     }
 
@@ -84,7 +86,10 @@ public class CloudDatabase extends android.app.Application {
     {
         boolean isTriggered;
 
-        if(status.getMotionDetected() && status.getDoorOpened())
+        boolean sensorStatuses = (status.getMotionDetected() && status.getDoorOpened());
+        boolean armStatus = armStatusSharedPreferences.getArmStatus();
+
+        if(sensorStatuses && armStatus)
             isTriggered = true;
         else
             isTriggered = false;
