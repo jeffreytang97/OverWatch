@@ -1,21 +1,34 @@
 package com.sensorem.overwatch;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AlarmActivity extends AppCompatActivity {
 
-    protected Switch theSwitch;
-    protected TextView movementTextView, doorTextView;
+    private static final String TAG = "Alarm Activity";
+
+    //protected Switch theSwitch;
+    protected Button armButton, disarmButton;
+    protected TextView movementTextView, doorTextView, alarmStatusTextView;
     protected String statusDoor, statusMotion;
     private CodesSharedPreferences codesSharedPreferences;
     private SensorsStatus sensors;
+    private ArmStatusSharedPreferences armStatusSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +37,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Alarm Activity");
         setupUI();
+        setupButtons();
 
         doorStatusDisplay();
         motionStatusDisplay();
@@ -35,11 +49,20 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
     protected void setupUI(){
-        theSwitch = findViewById(R.id.alarmSwitch);
+        //theSwitch = findViewById(R.id.alarmSwitch);
+        armButton = findViewById(R.id.armButton);
+        disarmButton = findViewById(R.id.diarmButton);
         movementTextView = findViewById(R.id.movementDetectorTextView);
         doorTextView = findViewById(R.id.doorStatusTextView);
+        alarmStatusTextView = findViewById(R.id.alarmStatusTextView);
         codesSharedPreferences = new CodesSharedPreferences(AlarmActivity.this);
         sensors = new SensorsStatus(AlarmActivity.this);
+        armStatusSharedPreferences = new ArmStatusSharedPreferences(AlarmActivity.this);
+
+        if(armStatusSharedPreferences.getArmStatus())
+            alarmStatusTextView.setText("Alarm is Armed");
+        else
+            alarmStatusTextView.setText("Alarm is Disarmed");
     }
 
     public void doorStatusDisplay(){
@@ -101,10 +124,40 @@ public class AlarmActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton){
             codesSharedPreferences.setIsLogged(false);
+            armStatusSharedPreferences.setArmStatus(false);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void setupButtons()
+    {
+        armButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d(TAG, "Alarm Armed");
+                Toast.makeText(AlarmActivity.this, "Alarm Armed", Toast.LENGTH_SHORT).show();
+                armStatusSharedPreferences.setArmStatus(true);
+                alarmStatusTextView.setText("Alarm is Armed");
+            }
+        });
+
+        disarmButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d(TAG, "Alarm Disarmed");
+                Toast.makeText(AlarmActivity.this, "Alarm Disarmed", Toast.LENGTH_SHORT).show();
+                armStatusSharedPreferences.setArmStatus(false);
+                alarmStatusTextView.setText("Alarm is Disarmed");
+            }
+        });
+
+    }
+
 }
