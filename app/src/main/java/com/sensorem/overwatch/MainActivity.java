@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected EditText codeEditText;
     protected Button loginButton;
-    public String theCode = "jeff131313";
+    public String theCode = "123";
 
     private CodesSharedPreferences sharedPrefsLoginCode;
 

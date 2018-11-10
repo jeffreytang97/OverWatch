@@ -26,6 +26,7 @@ public class SettingActivity extends AppCompatActivity {
     private Button settingChangePasscodeButton;
 
     private CodesSharedPreferences codesSharedPreferences;
+    private ArmStatusSharedPreferences armStatusSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class SettingActivity extends AppCompatActivity {
         settingChangePasscodeButton = findViewById(R.id.settingChangePasscodeButton);
 
         codesSharedPreferences = new CodesSharedPreferences(SettingActivity.this);
+        armStatusSharedPreferences = new ArmStatusSharedPreferences(SettingActivity.this);
 
         settingEditArmTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +109,7 @@ public class SettingActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton){
             codesSharedPreferences.setIsLogged(false);
+            armStatusSharedPreferences.setArmStatus(false);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }

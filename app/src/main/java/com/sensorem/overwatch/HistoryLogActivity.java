@@ -12,6 +12,7 @@ public class HistoryLogActivity extends AppCompatActivity {
     protected ListView historyList;
 
     private CodesSharedPreferences codesSharedPreferences;
+    private ArmStatusSharedPreferences armStatusSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class HistoryLogActivity extends AppCompatActivity {
     protected void setupUI(){
         historyList = findViewById(R.id.historyListView);
         codesSharedPreferences = new CodesSharedPreferences(HistoryLogActivity.this);
+        armStatusSharedPreferences = new ArmStatusSharedPreferences(HistoryLogActivity.this);
     }
 
     //To show the 3 dots button on the action bar
@@ -58,7 +60,8 @@ public class HistoryLogActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton){
             codesSharedPreferences.setIsLogged(false);
-            Intent logoutIntent = new Intent(this, MainActivity.class);
+          armStatusSharedPreferences.setArmStatus(false);
+          Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }
 
