@@ -8,20 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.TextView;
 
-import com.sensorem.overwatch.fragment.arm_alarm_Fragment;
 import com.sensorem.overwatch.fragment.change_PIN_Fragment;
-import com.sensorem.overwatch.fragment.disarm_alarm_fragment;
 
 public class SettingActivity extends AppCompatActivity {
 
-    private TextView settingArmTextView;
-    private TextView settingDisarmTextView;
-    private TextView settingArmTimeTextView;
-    private TextView settingDisarmTimeTextView;
-    private Button settingEditArmTimeButton;
-    private Button settingEditDisarmTimeButton;
+    private Button settingEditAutoButton;
     private Switch settingEditSwitch;
     private Button settingChangePasscodeButton;
 
@@ -41,31 +33,20 @@ public class SettingActivity extends AppCompatActivity {
 
     protected void setupUI(){
 
-        settingArmTextView = findViewById(R.id.settingArmTextView);
-        settingDisarmTextView = findViewById(R.id.settingDisarmTextView);
-        settingArmTimeTextView = findViewById(R.id.settingArmTimeTextView);
-        settingDisarmTimeTextView = findViewById(R.id.settingDisarmTimeTextView);
-        settingEditArmTimeButton = findViewById(R.id.settingEditArmTimeButton);
-        settingEditDisarmTimeButton = findViewById(R.id.settingEditDisarmTimeButton);
+        settingEditAutoButton = findViewById(R.id.settingEditAutoButton);
         settingEditSwitch = findViewById(R.id.settingEditSwitch);
         settingChangePasscodeButton = findViewById(R.id.settingChangePasscodeButton);
 
         codesSharedPreferences = new CodesSharedPreferences(SettingActivity.this);
         armStatusSharedPreferences = new ArmStatusSharedPreferences(SettingActivity.this);
 
-        settingEditArmTimeButton.setOnClickListener(new View.OnClickListener() {
+        settingEditAutoButton.setOnClickListener(new  Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                editArmTime();
+                goToEditAutoTime();
             }
         });
 
-        settingEditDisarmTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editDisarmTime();
-            }
-        });
 
         settingChangePasscodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,14 +98,10 @@ public class SettingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void editArmTime(){
-        arm_alarm_Fragment dialog = new arm_alarm_Fragment();
-        dialog.show(getSupportFragmentManager(), "Edit Arm time.");
-    }
 
-    public void editDisarmTime(){
-        disarm_alarm_fragment dialog = new disarm_alarm_fragment();
-        dialog.show(getSupportFragmentManager(), "Edit Disarm time.");
+    public void goToEditAutoTime(){
+        Intent intent = new Intent(this, SetAutomaticTime.class);
+        startActivity(intent);
     }
 
     public void editPasscode(){

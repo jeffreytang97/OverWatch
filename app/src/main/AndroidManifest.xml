@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sensorem.overwatch">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,9 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AlarmActivity" />
-        <activity android:name=".HistoryLogActivity"></activity>
+        <activity android:name=".HistoryLogActivity" /></activity>
         <activity android:name=".SettingActivity"></activity>
-
+        <activity android:name=".SetAutomaticTime"></activity>
         <receiver android:name=".AlarmTriggerReceiver"></receiver>
     </application>
 
