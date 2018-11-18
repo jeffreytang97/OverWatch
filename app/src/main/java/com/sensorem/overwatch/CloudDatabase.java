@@ -11,6 +11,10 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.sensorem.overwatch.HistoryLogDatabase.Events;
+import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
+
+import java.util.Calendar;
 
 public class CloudDatabase extends android.app.Application {
 
@@ -19,6 +23,7 @@ public class CloudDatabase extends android.app.Application {
     Firebase doorRef, motionRef;
     SensorsStatus status;
     ArmStatusSharedPreferences armStatusSharedPreferences;
+    Calendar currentDateTime;
 
     @Override
     public void onCreate(){
@@ -57,6 +62,23 @@ public class CloudDatabase extends android.app.Application {
               Log.d(TAG, "Movement value changed");
               Boolean isMotionDetected = ds.getValue(Boolean.class);
               status.setMotionDetected(isMotionDetected);
+
+              if (status.getMotionDetected()){
+                  HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                  currentDateTime = Calendar.getInstance();
+                  dbhelper.insertEvent(new Events(-1, "Movement detected", currentDateTime));
+              }
+
+              if (status.getDoorOpened()){
+                  HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                  currentDateTime = Calendar.getInstance();
+                  dbhelper.insertEvent(new Events(-1, "Door has been opened", currentDateTime));
+              }
+              else{
+                  HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                  currentDateTime = Calendar.getInstance();
+                  dbhelper.insertEvent(new Events(-1, "Door has been closed", currentDateTime));
+              }
 
               if(isAlarmTriggered())
                   startAlarm();

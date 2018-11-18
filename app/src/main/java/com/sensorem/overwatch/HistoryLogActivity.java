@@ -5,14 +5,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.sensorem.overwatch.HistoryLogDatabase.Events;
+import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class HistoryLogActivity extends AppCompatActivity {
 
-    protected ListView historyList;
+    protected ListView historyListView;
+    Calendar currentDateTime;
 
     private CodesSharedPreferences codesSharedPreferences;
     private ArmStatusSharedPreferences armStatusSharedPreferences;
+
+    HistoryDatabaseHelper dbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +33,25 @@ public class HistoryLogActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("History Log");
         setupUI();
+
+        loadHistoryListView();
     }
 
     protected void setupUI(){
-        historyList = findViewById(R.id.historyListView);
+        historyListView = findViewById(R.id.historyListView);
         codesSharedPreferences = new CodesSharedPreferences(HistoryLogActivity.this);
         armStatusSharedPreferences = new ArmStatusSharedPreferences(HistoryLogActivity.this);
+
+        currentDateTime = Calendar.getInstance();
+        dbhelper = new HistoryDatabaseHelper(HistoryLogActivity.this);
+
+        dbhelper.deleteEventIf24hour(currentDateTime);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        dbhelper.deleteEventIf24hour(currentDateTime);
     }
 
     //To show the 3 dots button on the action bar
@@ -66,5 +91,22 @@ public class HistoryLogActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void loadHistoryListView(){
+
+        HistoryDatabaseHelper dth = new HistoryDatabaseHelper(this);
+        List<Events> eventList = dth.getAllEvents();
+        ArrayList<String> listOfEvents = new ArrayList<>();
+
+
+        // Display the event with the date and time associated
+        for(int i=0; i< eventList.size(); i++){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String dateTime = simpleDateFormat.format(eventList.get(i).getSavedDateTime().getTime());
+            listOfEvents.add("\n" + eventList.get(i).getEventName() + "\n" + "    " + dateTime + "\n");
+        }
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listOfEvents);
+        historyListView.setAdapter(adapter);
     }
 }
