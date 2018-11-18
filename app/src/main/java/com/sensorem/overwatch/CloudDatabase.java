@@ -46,6 +46,17 @@ public class CloudDatabase extends android.app.Application {
                 Boolean isDoorOpen = ds.getValue(Boolean.class);
                 status.setDoorOpened(isDoorOpen);
 
+                if (status.getDoorOpened()){
+                    HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                    currentDateTime = Calendar.getInstance();
+                    dbhelper.insertEvent(new Events(-1, "Door has been opened", currentDateTime));
+                }
+                else{
+                    HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                    currentDateTime = Calendar.getInstance();
+                    dbhelper.insertEvent(new Events(-1, "Door has been closed", currentDateTime));
+                }
+
                 if(isAlarmTriggered())
                     startAlarm();
             }
@@ -67,17 +78,6 @@ public class CloudDatabase extends android.app.Application {
                   HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
                   currentDateTime = Calendar.getInstance();
                   dbhelper.insertEvent(new Events(-1, "Movement detected", currentDateTime));
-              }
-
-              if (status.getDoorOpened()){
-                  HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
-                  currentDateTime = Calendar.getInstance();
-                  dbhelper.insertEvent(new Events(-1, "Door has been opened", currentDateTime));
-              }
-              else{
-                  HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
-                  currentDateTime = Calendar.getInstance();
-                  dbhelper.insertEvent(new Events(-1, "Door has been closed", currentDateTime));
               }
 
               if(isAlarmTriggered())
