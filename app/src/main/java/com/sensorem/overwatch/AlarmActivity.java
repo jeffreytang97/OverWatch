@@ -18,17 +18,24 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sensorem.overwatch.HistoryLogDatabase.Events;
+import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
+
+import java.util.Calendar;
+import java.util.Collections;
+
 public class AlarmActivity extends AppCompatActivity {
 
     private static final String TAG = "Alarm Activity";
 
-    //protected Switch theSwitch;
     protected Button armButton, disarmButton;
     protected TextView movementTextView, doorTextView, alarmStatusTextView;
     protected String statusDoor, statusMotion;
     private CodesSharedPreferences codesSharedPreferences;
     private SensorsStatus sensors;
     private ArmStatusSharedPreferences armStatusSharedPreferences;
+
+    Calendar currentDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,8 @@ public class AlarmActivity extends AppCompatActivity {
 
         doorStatusDisplay();
         motionStatusDisplay();
+
+        currentDateTime = Calendar.getInstance();
     }
 
     @Override
@@ -143,6 +152,10 @@ public class AlarmActivity extends AppCompatActivity {
                 Toast.makeText(AlarmActivity.this, "Alarm Armed", Toast.LENGTH_SHORT).show();
                 armStatusSharedPreferences.setArmStatus(true);
                 alarmStatusTextView.setText("Alarm is Armed");
+
+
+                HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                dbhelper.insertEvent(new Events(-1, "Alarm armed by user", currentDateTime));
             }
         });
 
@@ -155,6 +168,9 @@ public class AlarmActivity extends AppCompatActivity {
                 Toast.makeText(AlarmActivity.this, "Alarm Disarmed", Toast.LENGTH_SHORT).show();
                 armStatusSharedPreferences.setArmStatus(false);
                 alarmStatusTextView.setText("Alarm is Disarmed");
+
+                HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                dbhelper.insertEvent(new Events(-1, "Alarm disarmed by user", currentDateTime));
             }
         });
 
