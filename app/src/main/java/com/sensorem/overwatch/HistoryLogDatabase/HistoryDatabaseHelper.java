@@ -97,7 +97,7 @@ public class HistoryDatabaseHelper extends SQLiteOpenHelper {
             cursor = sqLiteDatabase.query(Config.TABLE_EVENT, null, null, null, null, null, null, null);
 
             if(cursor!=null)
-                if(cursor.moveToFirst()){
+                if(cursor.moveToLast()){
                     List<Events> eventList = new ArrayList<>();
                     do {
 
@@ -113,7 +113,7 @@ public class HistoryDatabaseHelper extends SQLiteOpenHelper {
                         // insert in the list of events
                         eventList.add(new Events(id, eventName, calendar));
 
-                    } while (cursor.moveToNext());
+                    } while (cursor.moveToPrevious());
 
                     return eventList;
                 }

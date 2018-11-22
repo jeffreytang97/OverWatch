@@ -93,6 +93,10 @@ public class CloudDatabase extends android.app.Application {
 
     private void startAlarm()
     {
+        HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+        currentDateTime = Calendar.getInstance();
+        dbhelper.insertEvent(new Events(-1, "Alarm Triggered!", currentDateTime));
+
         AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         Intent intent;
         PendingIntent pendingIntent;
