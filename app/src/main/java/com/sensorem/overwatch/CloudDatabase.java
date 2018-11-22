@@ -11,6 +11,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.sensorem.overwatch.HistoryLogDatabase.CurrentTimeSharedPref;
 import com.sensorem.overwatch.HistoryLogDatabase.Events;
 import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
 
@@ -19,6 +20,10 @@ import java.util.Calendar;
 public class CloudDatabase extends android.app.Application {
 
     private static final String TAG = "FIREBASE";
+
+    private int hour, minutes, seconds;
+    private CurrentTimeSharedPref currentTimeSharedPref;
+    private CodesSharedPreferences loginStatus;
 
     Firebase doorRef, motionRef;
     SensorsStatus status;
@@ -34,6 +39,8 @@ public class CloudDatabase extends android.app.Application {
         motionRef = new Firebase("https://iotalarmsystem.firebaseio.com/motionDetected");
         status = new SensorsStatus(CloudDatabase.this);
         armStatusSharedPreferences = new ArmStatusSharedPreferences(CloudDatabase.this);
+        currentTimeSharedPref = new CurrentTimeSharedPref(CloudDatabase.this);
+        loginStatus = new CodesSharedPreferences(CloudDatabase.this);
         getSensorStatus();
     }
 
@@ -45,20 +52,25 @@ public class CloudDatabase extends android.app.Application {
                 Log.d(TAG, "Door value changed");
                 Boolean isDoorOpen = ds.getValue(Boolean.class);
                 status.setDoorOpened(isDoorOpen);
+                getTime();
 
-                if (status.getDoorOpened()){
-                    HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
-                    currentDateTime = Calendar.getInstance();
-                    dbhelper.insertEvent(new Events(-1, "Door has been opened", currentDateTime));
-                }
-                else{
-                    HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
-                    currentDateTime = Calendar.getInstance();
-                    dbhelper.insertEvent(new Events(-1, "Door has been closed", currentDateTime));
-                }
+                if(loginStatus.getIsLogged()){
+                    if((currentTimeSharedPref.getCurrentHour() != hour) || (currentTimeSharedPref.getCurrentMinute() != minutes) || (currentTimeSharedPref.getCurrentSecond() != seconds)){
+                        if (status.getDoorOpened()){
+                            HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                            currentDateTime = Calendar.getInstance();
+                            dbhelper.insertEvent(new Events(-1, "Door currently open", currentDateTime));
+                        }
+                        else{
+                            HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                            currentDateTime = Calendar.getInstance();
+                            dbhelper.insertEvent(new Events(-1, "Door currently closed", currentDateTime));
+                        }
 
-                if(isAlarmTriggered())
-                    startAlarm();
+                        if(isAlarmTriggered())
+                            startAlarm();
+                    }
+                }
             }
 
             @Override
@@ -73,15 +85,20 @@ public class CloudDatabase extends android.app.Application {
               Log.d(TAG, "Movement value changed");
               Boolean isMotionDetected = ds.getValue(Boolean.class);
               status.setMotionDetected(isMotionDetected);
+              getTime();
 
-              if (status.getMotionDetected()){
-                  HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
-                  currentDateTime = Calendar.getInstance();
-                  dbhelper.insertEvent(new Events(-1, "Movement detected", currentDateTime));
-              }
+                if(loginStatus.getIsLogged()){
+                    if((currentTimeSharedPref.getCurrentHour() != hour) || (currentTimeSharedPref.getCurrentMinute() != minutes) ||  (currentTimeSharedPref.getCurrentSecond() != seconds)){
+                        if (status.getMotionDetected()){
+                            HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(CloudDatabase.this);
+                            currentDateTime = Calendar.getInstance();
+                            dbhelper.insertEvent(new Events(-1, "Movement detected", currentDateTime));
+                        }
 
-              if(isAlarmTriggered())
-                  startAlarm();
+                        if(isAlarmTriggered())
+                            startAlarm();
+                    }
+                }
             }
 
             @Override
@@ -89,6 +106,13 @@ public class CloudDatabase extends android.app.Application {
                 // read failed
             }
         });
+    }
+
+    protected void getTime(){
+        currentDateTime = Calendar.getInstance();
+        hour = currentDateTime.get(Calendar.HOUR_OF_DAY);
+        minutes = currentDateTime.get(Calendar.MINUTE);
+        seconds = currentDateTime.get(Calendar.SECOND);
     }
 
     private void startAlarm()
