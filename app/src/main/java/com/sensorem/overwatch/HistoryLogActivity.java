@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.sensorem.overwatch.HistoryLogDatabase.CurrentTimeSharedPref;
 import com.sensorem.overwatch.HistoryLogDatabase.Events;
 import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
 
@@ -23,6 +24,7 @@ public class HistoryLogActivity extends AppCompatActivity {
 
     private CodesSharedPreferences codesSharedPreferences;
     private ArmStatusSharedPreferences armStatusSharedPreferences;
+    private CurrentTimeSharedPref currentTimeSharedPref;
 
     HistoryDatabaseHelper dbhelper;
 
@@ -34,15 +36,22 @@ public class HistoryLogActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("History Log");
         setupUI();
 
-        loadHistoryListView();
+        if(codesSharedPreferences.getIsLogged()){
+            loadHistoryListView();
+        }
     }
 
     protected void setupUI(){
         historyListView = findViewById(R.id.historyListView);
         codesSharedPreferences = new CodesSharedPreferences(HistoryLogActivity.this);
         armStatusSharedPreferences = new ArmStatusSharedPreferences(HistoryLogActivity.this);
+        currentTimeSharedPref = new CurrentTimeSharedPref(HistoryLogActivity.this);
 
         currentDateTime = Calendar.getInstance();
+        currentTimeSharedPref.setCurrentHour(currentDateTime);
+        currentTimeSharedPref.setCurrentMinute(currentDateTime);
+        currentTimeSharedPref.setCurrentSecond(currentDateTime);
+
         dbhelper = new HistoryDatabaseHelper(HistoryLogActivity.this);
 
         dbhelper.deleteEventIf24hour(currentDateTime);
@@ -59,7 +68,7 @@ public class HistoryLogActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu (Menu menu){
 
         //inflate menu
-        getMenuInflater().inflate(R.menu.three_dots_drop_down, menu);
+        getMenuInflater().inflate(R.menu.history_log_menu, menu);
         return true;
     }
 
@@ -71,23 +80,26 @@ public class HistoryLogActivity extends AppCompatActivity {
 
         // Menu item click handling
 
-        if (id == R.id.alarmActivityButton){
+        if (id == R.id.alarmActivityButton_log){
             Intent alarmIntent = new Intent(this, AlarmActivity.class);
             startActivity(alarmIntent);
         }
-        if (id == R.id.historyButton){
+        if (id == R.id.historyButton_log){
             Intent historyIntent = new Intent(this, HistoryLogActivity.class);
             startActivity(historyIntent);
         }
-        if (id == R.id.settingsButton){
+        if (id == R.id.settingsButton_log){
             Intent settingIntent = new Intent(this, SettingActivity.class);
             startActivity(settingIntent);
         }
-        if (id == R.id.logOutButton){
+        if (id == R.id.logOutButton_log){
             codesSharedPreferences.setIsLogged(false);
-          armStatusSharedPreferences.setArmStatus(false);
-          Intent logoutIntent = new Intent(this, MainActivity.class);
+            armStatusSharedPreferences.setArmStatus(false);
+            Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
+        }
+        if (id == R.id.refreshButton_log){
+            loadHistoryListView();
         }
 
         return super.onOptionsItemSelected(item);

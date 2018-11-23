@@ -18,6 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sensorem.overwatch.HistoryLogDatabase.CurrentTimeSharedPref;
 import com.sensorem.overwatch.HistoryLogDatabase.Events;
 import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
 
@@ -35,7 +36,8 @@ public class AlarmActivity extends AppCompatActivity {
     private SensorsStatus sensors;
     private ArmStatusSharedPreferences armStatusSharedPreferences;
 
-    Calendar currentDateTime;
+    private CurrentTimeSharedPref currentTimeSharedPref;
+    public Calendar currentDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,20 @@ public class AlarmActivity extends AppCompatActivity {
 
         doorStatusDisplay();
         motionStatusDisplay();
-
-        currentDateTime = Calendar.getInstance();
+        setCurrentTime();
     }
 
     @Override
     protected void onStart(){
         super.onStart();
+    }
+
+    protected void setCurrentTime(){
+
+        currentDateTime = Calendar.getInstance();
+        currentTimeSharedPref.setCurrentHour(currentDateTime);
+        currentTimeSharedPref.setCurrentMinute(currentDateTime);
+        currentTimeSharedPref.setCurrentSecond(currentDateTime);
     }
 
     protected void setupUI(){
@@ -67,6 +76,7 @@ public class AlarmActivity extends AppCompatActivity {
         codesSharedPreferences = new CodesSharedPreferences(AlarmActivity.this);
         sensors = new SensorsStatus(AlarmActivity.this);
         armStatusSharedPreferences = new ArmStatusSharedPreferences(AlarmActivity.this);
+        currentTimeSharedPref = new CurrentTimeSharedPref(AlarmActivity.this);
 
         if(armStatusSharedPreferences.getArmStatus())
             alarmStatusTextView.setText("Alarm is Armed");
@@ -155,6 +165,7 @@ public class AlarmActivity extends AppCompatActivity {
 
 
                 HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                currentDateTime = Calendar.getInstance();
                 dbhelper.insertEvent(new Events(-1, "Alarm armed by user", currentDateTime));
             }
         });
@@ -170,6 +181,7 @@ public class AlarmActivity extends AppCompatActivity {
                 alarmStatusTextView.setText("Alarm is Disarmed");
 
                 HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                currentDateTime = Calendar.getInstance();
                 dbhelper.insertEvent(new Events(-1, "Alarm disarmed by user", currentDateTime));
             }
         });
