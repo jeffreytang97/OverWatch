@@ -79,9 +79,18 @@ public class AlarmActivity extends AppCompatActivity {
         currentTimeSharedPref = new CurrentTimeSharedPref(AlarmActivity.this);
 
         if(armStatusSharedPreferences.getArmStatus())
+        {
             alarmStatusTextView.setText("Alarm is Armed");
+            armButton.setEnabled(false);
+            disarmButton.setEnabled(true);
+        }
         else
+        {
             alarmStatusTextView.setText("Alarm is Disarmed");
+            armButton.setEnabled(true);
+            disarmButton.setEnabled(false);
+        }
+
     }
 
     public void doorStatusDisplay(){
@@ -158,6 +167,8 @@ public class AlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                armButton.setEnabled(false);
+                disarmButton.setEnabled(true);
                 Log.d(TAG, "Alarm Armed");
                 Toast.makeText(AlarmActivity.this, "Alarm Armed", Toast.LENGTH_SHORT).show();
                 armStatusSharedPreferences.setArmStatus(true);
@@ -175,6 +186,8 @@ public class AlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                armButton.setEnabled(true);
+                disarmButton.setEnabled(false);
                 Log.d(TAG, "Alarm Disarmed");
                 Toast.makeText(AlarmActivity.this, "Alarm Disarmed", Toast.LENGTH_SHORT).show();
                 armStatusSharedPreferences.setArmStatus(false);

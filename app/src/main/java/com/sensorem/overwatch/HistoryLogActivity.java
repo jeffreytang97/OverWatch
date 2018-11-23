@@ -60,7 +60,6 @@ public class HistoryLogActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        dbhelper.deleteEventIf24hour(currentDateTime);
     }
 
     //To show the 3 dots button on the action bar
