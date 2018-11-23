@@ -165,6 +165,7 @@ public class AlarmActivity extends AppCompatActivity {
 
 
                 HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                currentDateTime = Calendar.getInstance();
                 dbhelper.insertEvent(new Events(-1, "Alarm armed by user", currentDateTime));
             }
         });
@@ -180,6 +181,7 @@ public class AlarmActivity extends AppCompatActivity {
                 alarmStatusTextView.setText("Alarm is Disarmed");
 
                 HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                currentDateTime = Calendar.getInstance();
                 dbhelper.insertEvent(new Events(-1, "Alarm disarmed by user", currentDateTime));
             }
         });
