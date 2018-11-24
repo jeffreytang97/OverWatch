@@ -29,7 +29,7 @@ public class AlarmActivity extends AppCompatActivity {
 
     private static final String TAG = "Alarm Activity";
 
-    protected Button armButton, disarmButton;
+    protected Button armButton, disarmButton, homeButton;
     protected TextView movementTextView, doorTextView, alarmStatusTextView;
     protected String statusDoor, statusMotion;
     private CodesSharedPreferences codesSharedPreferences;
@@ -70,6 +70,7 @@ public class AlarmActivity extends AppCompatActivity {
         //theSwitch = findViewById(R.id.alarmSwitch);
         armButton = findViewById(R.id.armButton);
         disarmButton = findViewById(R.id.diarmButton);
+        homeButton = findViewById(R.id.stayHomeButton);
         movementTextView = findViewById(R.id.movementDetectorTextView);
         doorTextView = findViewById(R.id.doorStatusTextView);
         alarmStatusTextView = findViewById(R.id.alarmStatusTextView);
@@ -78,10 +79,28 @@ public class AlarmActivity extends AppCompatActivity {
         armStatusSharedPreferences = new ArmStatusSharedPreferences(AlarmActivity.this);
         currentTimeSharedPref = new CurrentTimeSharedPref(AlarmActivity.this);
 
-        if(armStatusSharedPreferences.getArmStatus())
+        if(armStatusSharedPreferences.getArmStatus() == 1)
+        {
             alarmStatusTextView.setText("Alarm is Armed");
-        else
+            armButton.setEnabled(false);
+            disarmButton.setEnabled(true);
+            homeButton.setEnabled(true);
+        }
+        else if(armStatusSharedPreferences.getArmStatus() == 0)
+        {
             alarmStatusTextView.setText("Alarm is Disarmed");
+            armButton.setEnabled(true);
+            disarmButton.setEnabled(false);
+            homeButton.setEnabled(true);
+        }
+        else if(armStatusSharedPreferences.getArmStatus() == 2)
+        {
+            alarmStatusTextView.setText("Alarm is in Home Mode");
+            armButton.setEnabled(true);
+            disarmButton.setEnabled(true);
+            homeButton.setEnabled(false);
+        }
+
     }
 
     public void doorStatusDisplay(){
@@ -143,7 +162,7 @@ public class AlarmActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton){
             codesSharedPreferences.setIsLogged(false);
-            armStatusSharedPreferences.setArmStatus(false);
+            armStatusSharedPreferences.setArmStatus(0);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }
@@ -158,9 +177,12 @@ public class AlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                armButton.setEnabled(false);
+                disarmButton.setEnabled(true);
+                homeButton.setEnabled(true);
                 Log.d(TAG, "Alarm Armed");
                 Toast.makeText(AlarmActivity.this, "Alarm Armed", Toast.LENGTH_SHORT).show();
-                armStatusSharedPreferences.setArmStatus(true);
+                armStatusSharedPreferences.setArmStatus(1);
                 alarmStatusTextView.setText("Alarm is Armed");
 
 
@@ -175,14 +197,36 @@ public class AlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                armButton.setEnabled(true);
+                disarmButton.setEnabled(false);
+                homeButton.setEnabled(true);
                 Log.d(TAG, "Alarm Disarmed");
                 Toast.makeText(AlarmActivity.this, "Alarm Disarmed", Toast.LENGTH_SHORT).show();
-                armStatusSharedPreferences.setArmStatus(false);
+                armStatusSharedPreferences.setArmStatus(0);
                 alarmStatusTextView.setText("Alarm is Disarmed");
 
                 HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
                 currentDateTime = Calendar.getInstance();
                 dbhelper.insertEvent(new Events(-1, "Alarm disarmed by user", currentDateTime));
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                armButton.setEnabled(true);
+                disarmButton.setEnabled(true);
+                homeButton.setEnabled(false);
+                Log.d(TAG, "Alarm Home Mode");
+                Toast.makeText(AlarmActivity.this, "Alarm is in Home Mode", Toast.LENGTH_SHORT).show();
+                armStatusSharedPreferences.setArmStatus(2);
+                alarmStatusTextView.setText("Alarm is in Home Mode");
+
+                HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(AlarmActivity.this);
+                currentDateTime = Calendar.getInstance();
+                dbhelper.insertEvent(new Events(-1, "Alarm put in home mode by user", currentDateTime));
             }
         });
 

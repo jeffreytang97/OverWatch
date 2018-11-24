@@ -136,11 +136,24 @@ public class CloudDatabase extends android.app.Application {
     {
         boolean isTriggered;
 
-        boolean sensorStatuses = (status.getMotionDetected() && status.getDoorOpened());
-        boolean armStatus = armStatusSharedPreferences.getArmStatus();
+        boolean motionStatus = status.getMotionDetected();
+        boolean doorStatus = status.getDoorOpened();
+        int armStatus = armStatusSharedPreferences.getArmStatus();
 
-        if(sensorStatuses && armStatus)
-            isTriggered = true;
+        if(armStatus == 1)
+        {
+            if(motionStatus || doorStatus)
+                isTriggered = true;
+            else
+                isTriggered = false;
+        }
+        else if(armStatus == 2)
+        {
+            if(doorStatus)
+                isTriggered = true;
+            else
+                isTriggered = false;
+        }
         else
             isTriggered = false;
 

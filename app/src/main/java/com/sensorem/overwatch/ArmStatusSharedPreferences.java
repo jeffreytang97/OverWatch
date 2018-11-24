@@ -17,16 +17,17 @@ public class ArmStatusSharedPreferences
     sharedPreferences = context.getSharedPreferences("ArmStatus", Context.MODE_PRIVATE);
   }
 
-  public boolean getArmStatus()
+  //Modes are now in integers; 0 = Disarmed; 1 = Armed; 2 = Home
+  public int getArmStatus()
   {
-    return sharedPreferences.getBoolean(IS_ARMED,false);
+    return sharedPreferences.getInt(IS_ARMED,-1);
   }
 
-  public void setArmStatus(boolean status)
+  public void setArmStatus(int status)
   {
     Log.d(TAG, "Arm Status set to: "+ status);
     SharedPreferences.Editor editor = sharedPreferences.edit();
-    editor.putBoolean(IS_ARMED, status);
+    editor.putInt(IS_ARMED, status);
     editor.apply();
   }
 }

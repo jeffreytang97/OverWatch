@@ -90,7 +90,7 @@ public class SettingActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton){
             codesSharedPreferences.setIsLogged(false);
-            armStatusSharedPreferences.setArmStatus(false);
+            armStatusSharedPreferences.setArmStatus(0);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }
