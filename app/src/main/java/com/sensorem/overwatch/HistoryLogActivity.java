@@ -93,7 +93,7 @@ public class HistoryLogActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton_log){
             codesSharedPreferences.setIsLogged(false);
-            armStatusSharedPreferences.setArmStatus(false);
+            armStatusSharedPreferences.setArmStatus(0);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }

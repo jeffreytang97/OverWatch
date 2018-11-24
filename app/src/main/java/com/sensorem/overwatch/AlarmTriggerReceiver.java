@@ -17,7 +17,7 @@ public class AlarmTriggerReceiver extends BroadcastReceiver
   public void onReceive(Context context, Intent intent)
   {
     createNotificationChannel(context);
-    Intent resultIntent = new Intent(context,AlarmActivity.class);
+    Intent resultIntent = new Intent(context,HistoryLogActivity.class);
     PendingIntent resultPendingIntent = PendingIntent.getActivity(context,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default")
