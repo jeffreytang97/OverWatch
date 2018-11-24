@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
@@ -44,6 +45,14 @@ public class SetAutomaticTime extends AppCompatActivity{
     private static EditText armSunday;
     private static EditText disarmSunday;
 
+    private Button deleteMondayButton;
+    private Button deleteTuesdayButton;
+    private Button deleteWedButton;
+    private Button deleteThurButton;
+    private Button deleteFriButton;
+    private Button deleteSatButton;
+    private Button deleteSunButton;
+
     protected static SetTimeSharedPreferences setTimeSharedPreferences;
 
     @Override
@@ -53,6 +62,7 @@ public class SetAutomaticTime extends AppCompatActivity{
 
         setTimeSharedPreferences = new SetTimeSharedPreferences(SetAutomaticTime.this);
         setupUI();
+        deleteTime();
     }
 
     @Override
@@ -79,8 +89,96 @@ public class SetAutomaticTime extends AppCompatActivity{
 
         armSunday.setText(setTimeSharedPreferences.getSundayArm());
         disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+
+        deleteTime();
     }
 
+
+    public void deleteTime(){
+        deleteMondayButton = findViewById(R.id.deleteMondayButton);
+        deleteMondayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setMondayArm("");
+                setTimeSharedPreferences.setMondayDisarm("");
+
+                armMonday.setText(setTimeSharedPreferences.getMondayArm());
+                disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+            }
+        });
+
+        deleteTuesdayButton = findViewById(R.id.deleteTuesdayButton);
+        deleteTuesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setTuesdayArm("");
+                setTimeSharedPreferences.setTuesdayDisarm("");
+
+                armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+                disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+            }
+        });
+
+        deleteWedButton = findViewById(R.id.deleteWedButton);
+        deleteWedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setWednesdayArm("");
+                setTimeSharedPreferences.setWednesdayDisarm("");
+
+                armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+                disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+            }
+        });
+
+        deleteThurButton = findViewById(R.id.deleteThurButton);
+        deleteThurButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setThursdayArm("");
+                setTimeSharedPreferences.setThursdayDisarm("");
+
+                armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+                disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+            }
+        });
+
+        deleteFriButton = findViewById(R.id.deleteFriButton);
+        deleteFriButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setFridayArm("");
+                setTimeSharedPreferences.setFridayDisarm("");
+
+                armFriday.setText(setTimeSharedPreferences.getFridayArm());
+                disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+            }
+        });
+
+        deleteSatButton = findViewById(R.id.deleteSatButton);
+        deleteSatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setSaturdayArm("");
+                setTimeSharedPreferences.setSaturdayDisarm("");
+
+                armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+                disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+            }
+        });
+
+        deleteSunButton = findViewById(R.id.deleteSunButton);
+        deleteSunButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setSundayArm("");
+                setTimeSharedPreferences.setSundayDisarm("");
+
+                armSunday.setText(setTimeSharedPreferences.getSundayArm());
+                disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+            }
+        });
+    }
 
     public void setupUI(){
 
@@ -213,10 +311,10 @@ public class SetAutomaticTime extends AppCompatActivity{
     }
 
     /*
-    *
-    * COULD NOT FIND ANOTHER WAY BECAUSE OF TIME CONSTRAINT
-    * HAD TO MAKE MULTIPLE CLASSES
-    * */
+     *
+     * COULD NOT FIND ANOTHER WAY BECAUSE OF TIME CONSTRAINT
+     * HAD TO MAKE MULTIPLE CLASSES
+     * */
 
 
     //TIMEPICKER HELPER CLASS FOE ARM MONDAY
