@@ -108,5 +108,4 @@ public class SettingActivity extends AppCompatActivity {
         change_PIN_Fragment dialog = new change_PIN_Fragment();
         dialog.show(getSupportFragmentManager(), "Edit passcode.");
     }
-    //test
 }
