@@ -25,6 +25,7 @@
         <activity android:name=".SetAutomaticTime" />
         <receiver android:name=".AlarmTriggerReceiver" />
         <receiver android:name=".AutoArmReceiverMonday"/>
+        <receiver android:name=".AutoDisarmReceiverMonday"/>
     </application>
 
 </manifest>

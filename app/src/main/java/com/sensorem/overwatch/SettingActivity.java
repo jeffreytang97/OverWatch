@@ -106,12 +106,15 @@ public class SettingActivity extends AppCompatActivity {
 
                 Log.d(TAG, "Enabled");
                 Toast.makeText(SettingActivity.this, "Enable Automatic Arm / Disarm", Toast.LENGTH_SHORT).show();
-                Calendar presentTime = Calendar.getInstance();
-                String time = setTimeSharedPreferences.getSaturdayArm();
+                Calendar theTime = Calendar.getInstance();
+                String time;
+
+                //ARM PORTION
+                time = setTimeSharedPreferences.getSaturdayArm();
                 String[] times = time.split(":");
-                presentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
-                presentTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
-                presentTime.set(Calendar.SECOND, 0);
+                theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                theTime.set(Calendar.SECOND, 0);
 
                 AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 Intent intent;
@@ -120,7 +123,23 @@ public class SettingActivity extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
                 pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
 
-                manager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+5000,pendingIntent);
+                manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),pendingIntent);
+
+                //DISARM PORTION
+                time = setTimeSharedPreferences.getSaturdayDisarm();
+                times = time.split(":");
+                theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                theTime.set(Calendar.SECOND, 0);
+
+                AlarmManager disarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                Intent disarmIntent;
+                PendingIntent disarmPendingIntent;
+
+                disarmIntent = new Intent(getApplicationContext(), AutoDisarmReceiverMonday.class);
+                disarmPendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,disarmIntent,0);
+
+                disarmManager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),disarmPendingIntent);
 
             }
         });
@@ -132,6 +151,30 @@ public class SettingActivity extends AppCompatActivity {
                 armStatusSharedPreferences.setAutoArmStatus(false);
                 settingArmButton.setEnabled(true);
                 settingDisarmButton.setEnabled(false);
+
+                Log.d(TAG, "Disable");
+                Toast.makeText(SettingActivity.this, "Disable Automatic Arm / Disarm", Toast.LENGTH_SHORT).show();
+
+                //ARM PORTION
+                AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                Intent intent;
+                PendingIntent pendingIntent;
+
+                intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
+                pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
+
+                manager.cancel(pendingIntent);
+
+                //DISARM PORTION
+                AlarmManager disarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                Intent disarmIntent;
+                PendingIntent disarmPendingIntent;
+
+                disarmIntent = new Intent(getApplicationContext(), AutoDisarmReceiverMonday.class);
+                disarmPendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,disarmIntent,0);
+
+                disarmManager.cancel(disarmPendingIntent);
+
             }
         });
 

@@ -68,17 +68,19 @@
         android:id="@+id/settingAutoArm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView5"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="94dp"
-        android:text="Auto Arm" />
+        android:text="Auto Scheduling" />
 
     <Button
         android:id="@+id/settingAutoDisarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/settingChangePasscodeButton"
+        android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/settingAutoArm"
-        android:text="Auto Disarm" />
+        android:layout_marginEnd="20dp"
+        android:text="Disable Scheduling" />
 
 </RelativeLayout>
