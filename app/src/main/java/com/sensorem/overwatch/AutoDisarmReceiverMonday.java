@@ -10,6 +10,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import com.sensorem.overwatch.HistoryLogDatabase.Events;
+import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
+
+import java.util.Calendar;
+
 public class AutoDisarmReceiverMonday extends BroadcastReceiver {
 
     private ArmStatusSharedPreferences armStatusSharedPreferences;
@@ -18,6 +23,10 @@ public class AutoDisarmReceiverMonday extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         armStatusSharedPreferences = new ArmStatusSharedPreferences(context);
         armStatusSharedPreferences.setArmStatus(0);
+
+        HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(context);
+        Calendar currentDateTime = Calendar.getInstance();
+        dbhelper.insertEvent(new Events(-1, "Alarm auto disarmed", currentDateTime));
 
         createNotificationChannel(context);
         Intent resultIntent = new Intent(context,HistoryLogActivity.class);

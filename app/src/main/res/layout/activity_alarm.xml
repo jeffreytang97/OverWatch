@@ -160,7 +160,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="240dp"
         android:gravity="center"
-        android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="24sp" />
 

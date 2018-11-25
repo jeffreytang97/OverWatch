@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import com.sensorem.overwatch.HistoryLogDatabase.Events;
+import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
+
 import java.util.Calendar;
 
 public class AutoArmReceiverMonday extends BroadcastReceiver {
@@ -20,6 +23,10 @@ public class AutoArmReceiverMonday extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         armStatusSharedPreferences = new ArmStatusSharedPreferences(context);
         armStatusSharedPreferences.setArmStatus(1);
+
+        HistoryDatabaseHelper dbhelper = new HistoryDatabaseHelper(context);
+        Calendar currentDateTime = Calendar.getInstance();
+        dbhelper.insertEvent(new Events(-1, "Alarm auto armed", currentDateTime));
 
         createNotificationChannel(context);
         Intent resultIntent = new Intent(context,HistoryLogActivity.class);
