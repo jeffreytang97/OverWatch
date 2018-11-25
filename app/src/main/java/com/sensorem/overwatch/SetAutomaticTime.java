@@ -69,28 +69,6 @@ public class SetAutomaticTime extends AppCompatActivity{
     protected void onStart(){
         super.onStart();
 
-        armMonday.setText(setTimeSharedPreferences.getMondayArm());
-        disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
-
-        armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
-        disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
-
-        armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
-        disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
-
-        armThursday.setText(setTimeSharedPreferences.getThursdayArm());
-        disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
-
-        armFriday.setText(setTimeSharedPreferences.getFridayArm());
-        disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
-
-        armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
-        disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
-
-        armSunday.setText(setTimeSharedPreferences.getSundayArm());
-        disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
-
-        deleteTime();
     }
 
 
@@ -181,6 +159,7 @@ public class SetAutomaticTime extends AppCompatActivity{
     }
 
     public void setupUI(){
+
 
         armMonday = findViewById(R.id.armMonday);
         armMonday.setOnClickListener(new View.OnClickListener() {
@@ -307,6 +286,28 @@ public class SetAutomaticTime extends AppCompatActivity{
                 dialog.show(getSupportFragmentManager(), "timePicker");
             }
         });
+
+
+        armMonday.setText(setTimeSharedPreferences.getMondayArm());
+        disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+
+        armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+        disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+
+        armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+        disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+
+        armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+        disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+
+        armFriday.setText(setTimeSharedPreferences.getFridayArm());
+        disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+
+        armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+        disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+
+        armSunday.setText(setTimeSharedPreferences.getSundayArm());
+        disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
 
     }
 

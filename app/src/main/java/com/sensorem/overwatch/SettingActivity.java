@@ -1,24 +1,46 @@
 package com.sensorem.overwatch;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.sensorem.overwatch.HistoryLogDatabase.CurrentTimeSharedPref;
+import com.sensorem.overwatch.HistoryLogDatabase.Events;
+import com.sensorem.overwatch.HistoryLogDatabase.HistoryDatabaseHelper;
 import com.sensorem.overwatch.fragment.change_PIN_Fragment;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class SettingActivity extends AppCompatActivity {
 
+    private static final String TAG = "Setting Activity";
+
     private Button settingEditAutoButton;
-    private Switch settingEditSwitch;
     private Button settingChangePasscodeButton;
+
+    private Button settingArmButton;
+    private Button settingDisarmButton;
 
     private CodesSharedPreferences codesSharedPreferences;
     private ArmStatusSharedPreferences armStatusSharedPreferences;
+    private SetTimeSharedPreferences setTimeSharedPreferences;
+    SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +53,34 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        setupUI();
+
+    }
+
     protected void setupUI(){
 
         settingEditAutoButton = findViewById(R.id.settingEditAutoButton);
-        settingEditSwitch = findViewById(R.id.settingEditSwitch);
         settingChangePasscodeButton = findViewById(R.id.settingChangePasscodeButton);
+
+        settingArmButton = findViewById(R.id.settingAutoArm);
+        settingDisarmButton = findViewById(R.id.settingAutoDisarm);
 
         codesSharedPreferences = new CodesSharedPreferences(SettingActivity.this);
         armStatusSharedPreferences = new ArmStatusSharedPreferences(SettingActivity.this);
+        setTimeSharedPreferences = new SetTimeSharedPreferences(SettingActivity.this);
+
+        if (armStatusSharedPreferences.getAutoArmStatus()){
+            settingArmButton.setEnabled(false);
+            settingDisarmButton.setEnabled(true);
+        }
+        else{
+            settingArmButton.setEnabled(true);
+            settingDisarmButton.setEnabled(false);
+        }
 
         settingEditAutoButton.setOnClickListener(new  Button.OnClickListener(){
             @Override
@@ -47,7 +89,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-
         settingChangePasscodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +96,44 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        settingArmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                armStatusSharedPreferences.setAutoArmStatus(true);
+                settingArmButton.setEnabled(false);
+                settingDisarmButton.setEnabled(true);
+
+                Log.d(TAG, "Enabled");
+                Toast.makeText(SettingActivity.this, "Enable Automatic Arm / Disarm", Toast.LENGTH_SHORT).show();
+                Calendar presentTime = Calendar.getInstance();
+                String time = setTimeSharedPreferences.getSaturdayArm();
+                String[] times = time.split(":");
+                presentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                presentTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                presentTime.set(Calendar.SECOND, 0);
+
+                AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                Intent intent;
+                PendingIntent pendingIntent;
+
+                intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
+                pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
+
+                manager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+5000,pendingIntent);
+
+            }
+        });
+
+        settingDisarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                armStatusSharedPreferences.setAutoArmStatus(false);
+                settingArmButton.setEnabled(true);
+                settingDisarmButton.setEnabled(false);
+            }
+        });
 
     }
 
