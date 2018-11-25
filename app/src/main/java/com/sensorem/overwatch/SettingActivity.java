@@ -109,8 +109,6 @@ public class SettingActivity extends AppCompatActivity {
                 Calendar theTime = Calendar.getInstance();
                 String time;
 
-                Calendar c = Calendar.getInstance();
-
                 //ARM PORTION
                 time = setTimeSharedPreferences.getMondayArm();
                 String[] times = time.split(":");
@@ -118,19 +116,14 @@ public class SettingActivity extends AppCompatActivity {
                 theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
                 theTime.set(Calendar.SECOND, 0);
 
-                if(c.before(theTime))
-                {
-                    AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                    Intent intent;
-                    PendingIntent pendingIntent;
+                AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                Intent intent;
+                PendingIntent pendingIntent;
 
-                    intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
-                    pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
+                intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
+                pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
 
-                    manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(), pendingIntent);
-                }
-
-                c = Calendar.getInstance();
+                manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(), pendingIntent);
 
                 //DISARM PORTION
                 time = setTimeSharedPreferences.getMondayDisarm();
@@ -139,18 +132,14 @@ public class SettingActivity extends AppCompatActivity {
                 theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
                 theTime.set(Calendar.SECOND, 0);
 
-                if(c.before(theTime))
-                {
-                    AlarmManager disarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                    Intent disarmIntent;
-                    PendingIntent disarmPendingIntent;
+                AlarmManager disarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                Intent disarmIntent;
+                PendingIntent disarmPendingIntent;
 
-                    disarmIntent = new Intent(getApplicationContext(), AutoDisarmReceiverMonday.class);
-                    disarmPendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,disarmIntent,0);
+                disarmIntent = new Intent(getApplicationContext(), AutoDisarmReceiverMonday.class);
+                disarmPendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,disarmIntent,0);
 
-                    disarmManager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),disarmPendingIntent);
-                }
-
+                disarmManager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),disarmPendingIntent);
 
             }
         });
