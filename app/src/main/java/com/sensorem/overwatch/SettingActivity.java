@@ -110,7 +110,7 @@ public class SettingActivity extends AppCompatActivity {
                 String time;
 
                 //ARM PORTION
-                time = setTimeSharedPreferences.getSaturdayArm();
+                time = setTimeSharedPreferences.getMondayArm();
                 String[] times = time.split(":");
                 theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
                 theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
@@ -123,10 +123,10 @@ public class SettingActivity extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
                 pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
 
-                manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),pendingIntent);
+                manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(), pendingIntent);
 
                 //DISARM PORTION
-                time = setTimeSharedPreferences.getSaturdayDisarm();
+                time = setTimeSharedPreferences.getMondayDisarm();
                 times = time.split(":");
                 theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
                 theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
