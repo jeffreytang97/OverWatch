@@ -106,11 +106,11 @@ public class AlarmActivity extends AppCompatActivity {
         // This part is only for testing purpose with the cloud for now
 
         if (sensors.getDoorOpened()){
-            statusDoor = "The door is currently opened. (true)";
+            statusDoor = "The door is currently opened.";
             doorTextView.setText(statusDoor);
         }
         else{
-            statusDoor = "The door is currently closed. (false)";
+            statusDoor = "The door is currently closed.";
             doorTextView.setText(statusDoor);
         }
     }
@@ -120,11 +120,11 @@ public class AlarmActivity extends AppCompatActivity {
         // This part is only for testing purpose with the cloud for now
 
         if (sensors.getMotionDetected()){
-            statusMotion = "Movement detected. (true)";
+            statusMotion = "Movement detected.";
             movementTextView.setText(statusMotion);
         }
         else{
-            statusMotion = "No movement detected. (false)";
+            statusMotion = "No movement detected.";
             movementTextView.setText(statusMotion);
         }
     }
@@ -134,7 +134,7 @@ public class AlarmActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu (Menu menu){
 
         //inflate menu
-        getMenuInflater().inflate(R.menu.three_dots_drop_down, menu);
+        getMenuInflater().inflate(R.menu.history_log_menu, menu);
         return true;
     }
 
@@ -146,23 +146,28 @@ public class AlarmActivity extends AppCompatActivity {
 
         // Menu item click handling
 
-        if (id == R.id.alarmActivityButton){
+        if (id == R.id.alarmActivityButton_log){
             Intent alarmIntent = new Intent(this, AlarmActivity.class);
             startActivity(alarmIntent);
         }
-        if (id == R.id.historyButton){
+        if (id == R.id.historyButton_log){
             Intent historyIntent = new Intent(this, HistoryLogActivity.class);
             startActivity(historyIntent);
         }
-        if (id == R.id.settingsButton){
+        if (id == R.id.settingsButton_log){
             Intent settingIntent = new Intent(this, SettingActivity.class);
             startActivity(settingIntent);
         }
-        if (id == R.id.logOutButton){
+        if (id == R.id.logOutButton_log){
             codesSharedPreferences.setIsLogged(false);
             armStatusSharedPreferences.setArmStatus(0);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
+        }
+        if (id == R.id.refreshButton_log){
+            doorStatusDisplay();
+            motionStatusDisplay();
+            setCurrentTime();
         }
 
         return super.onOptionsItemSelected(item);
