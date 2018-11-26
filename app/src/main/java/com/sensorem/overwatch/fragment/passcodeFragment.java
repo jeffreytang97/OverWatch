@@ -16,6 +16,7 @@ public class passcodeFragment extends DialogFragment {
 
     private EditText passcodeEditText;
     private Button passcodeConfirmButton;
+    private Button passcodeCancelButton;
 
     @Nullable
     @Override
@@ -26,6 +27,25 @@ public class passcodeFragment extends DialogFragment {
 
         passcodeEditText = view.findViewById(R.id.passcodeEditText);
         passcodeConfirmButton = view.findViewById(R.id.passcodeConfirmButton);
+        passcodeCancelButton = view.findViewById(R.id.passcodeCancelButton);
+
+        passcodeCancelButton.setOnClickListener(new Button.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                getDialog().dismiss();
+            }
+        });
+
+        passcodeConfirmButton.setOnClickListener(new Button.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
 
 
 
