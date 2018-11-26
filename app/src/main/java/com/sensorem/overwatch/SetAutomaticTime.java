@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 
 public class SetAutomaticTime extends AppCompatActivity{
 
@@ -44,6 +46,14 @@ public class SetAutomaticTime extends AppCompatActivity{
     private static EditText armSunday;
     private static EditText disarmSunday;
 
+    private Button deleteMondayButton;
+    private Button deleteTuesdayButton;
+    private Button deleteWedButton;
+    private Button deleteThurButton;
+    private Button deleteFriButton;
+    private Button deleteSatButton;
+    private Button deleteSunButton;
+
     protected static SetTimeSharedPreferences setTimeSharedPreferences;
 
     @Override
@@ -53,36 +63,104 @@ public class SetAutomaticTime extends AppCompatActivity{
 
         setTimeSharedPreferences = new SetTimeSharedPreferences(SetAutomaticTime.this);
         setupUI();
+        deleteTime();
     }
 
     @Override
     protected void onStart(){
         super.onStart();
 
-        armMonday.setText(setTimeSharedPreferences.getMondayArm());
-        disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
-
-        armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
-        disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
-
-        armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
-        disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
-
-        armThursday.setText(setTimeSharedPreferences.getThursdayArm());
-        disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
-
-        armFriday.setText(setTimeSharedPreferences.getFridayArm());
-        disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
-
-        armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
-        disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
-
-        armSunday.setText(setTimeSharedPreferences.getSundayArm());
-        disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
     }
 
 
+    public void deleteTime(){
+        deleteMondayButton = findViewById(R.id.deleteMondayButton);
+        deleteMondayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setMondayArm("");
+                setTimeSharedPreferences.setMondayDisarm("");
+
+                armMonday.setText(setTimeSharedPreferences.getMondayArm());
+                disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+            }
+        });
+
+        deleteTuesdayButton = findViewById(R.id.deleteTuesdayButton);
+        deleteTuesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setTuesdayArm("");
+                setTimeSharedPreferences.setTuesdayDisarm("");
+
+                armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+                disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+            }
+        });
+
+        deleteWedButton = findViewById(R.id.deleteWedButton);
+        deleteWedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setWednesdayArm("");
+                setTimeSharedPreferences.setWednesdayDisarm("");
+
+                armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+                disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+            }
+        });
+
+        deleteThurButton = findViewById(R.id.deleteThurButton);
+        deleteThurButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setThursdayArm("");
+                setTimeSharedPreferences.setThursdayDisarm("");
+
+                armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+                disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+            }
+        });
+
+        deleteFriButton = findViewById(R.id.deleteFriButton);
+        deleteFriButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setFridayArm("");
+                setTimeSharedPreferences.setFridayDisarm("");
+
+                armFriday.setText(setTimeSharedPreferences.getFridayArm());
+                disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+            }
+        });
+
+        deleteSatButton = findViewById(R.id.deleteSatButton);
+        deleteSatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setSaturdayArm("");
+                setTimeSharedPreferences.setSaturdayDisarm("");
+
+                armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+                disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+            }
+        });
+
+        deleteSunButton = findViewById(R.id.deleteSunButton);
+        deleteSunButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTimeSharedPreferences.setSundayArm("");
+                setTimeSharedPreferences.setSundayDisarm("");
+
+                armSunday.setText(setTimeSharedPreferences.getSundayArm());
+                disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+            }
+        });
+    }
+
     public void setupUI(){
+
 
         armMonday = findViewById(R.id.armMonday);
         armMonday.setOnClickListener(new View.OnClickListener() {
@@ -210,13 +288,35 @@ public class SetAutomaticTime extends AppCompatActivity{
             }
         });
 
+
+        armMonday.setText(setTimeSharedPreferences.getMondayArm());
+        disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+
+        armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+        disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+
+        armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+        disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+
+        armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+        disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+
+        armFriday.setText(setTimeSharedPreferences.getFridayArm());
+        disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+
+        armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+        disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+
+        armSunday.setText(setTimeSharedPreferences.getSundayArm());
+        disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+
     }
 
     /*
-    *
-    * COULD NOT FIND ANOTHER WAY BECAUSE OF TIME CONSTRAINT
-    * HAD TO MAKE MULTIPLE CLASSES
-    * */
+     *
+     * COULD NOT FIND ANOTHER WAY BECAUSE OF TIME CONSTRAINT
+     * HAD TO MAKE MULTIPLE CLASSES
+     * */
 
 
     //TIMEPICKER HELPER CLASS FOE ARM MONDAY
@@ -239,8 +339,34 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setMondayArm(theHour + ":" + theMinute);
-            armMonday.setText(setTimeSharedPreferences.getMondayArm());
+            String time = setTimeSharedPreferences.getMondayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setMondayArm(theHour + ":" + theMinute);
+                    armMonday.setText(setTimeSharedPreferences.getMondayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setMondayArm(theHour + ":" + theMinute);
+                armMonday.setText(setTimeSharedPreferences.getMondayArm());
+            }
+
         }
 
     }
@@ -265,8 +391,35 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setMondayDisarm(theHour + ":" + theMinute);
-            disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+            String time = setTimeSharedPreferences.getMondayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setMondayDisarm(theHour + ":" + theMinute);
+                    disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setMondayDisarm(theHour + ":" + theMinute);
+                disarmMonday.setText(setTimeSharedPreferences.getMondayDisarm());
+            }
+
+
         }
     }
 
@@ -290,8 +443,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setTuesdayArm(theHour + ":" + theMinute);
-            armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+            String time = setTimeSharedPreferences.getTuesdayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setTuesdayArm(theHour + ":" + theMinute);
+                    armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setTuesdayArm(theHour + ":" + theMinute);
+                armTuesday.setText(setTimeSharedPreferences.getTuesdayArm());
+            }
         }
     }
 
@@ -315,8 +493,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setTuesdayDisarm(theHour + ":" + theMinute);
-            disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+            String time = setTimeSharedPreferences.getTuesdayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setTuesdayDisarm(theHour + ":" + theMinute);
+                    disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setTuesdayDisarm(theHour + ":" + theMinute);
+                disarmTuesday.setText(setTimeSharedPreferences.getTuesdayDisarm());
+            }
         }
     }
 
@@ -340,8 +543,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setWednesdayArm(theHour + ":" + theMinute);
-            armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+            String time = setTimeSharedPreferences.getWednesdayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setWednesdayArm(theHour + ":" + theMinute);
+                    armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setWednesdayArm(theHour + ":" + theMinute);
+                armWednesday.setText(setTimeSharedPreferences.getWednesdayArm());
+            }
         }
     }
 
@@ -365,8 +593,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setWednesdayDisarm(theHour + ":" + theMinute);
-            disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+            String time = setTimeSharedPreferences.getWednesdayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setWednesdayDisarm(theHour + ":" + theMinute);
+                    disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setWednesdayDisarm(theHour + ":" + theMinute);
+                disarmWednesday.setText(setTimeSharedPreferences.getWednesdayDisarm());
+            }
         }
     }
 
@@ -390,8 +643,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setThursdayArm(theHour + ":" + theMinute);
-            armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+            String time = setTimeSharedPreferences.getThursdayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setThursdayArm(theHour + ":" + theMinute);
+                    armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setThursdayArm(theHour + ":" + theMinute);
+                armThursday.setText(setTimeSharedPreferences.getThursdayArm());
+            }
         }
     }
 
@@ -415,8 +693,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setThursdayDisarm(theHour + ":" + theMinute);
-            disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+            String time = setTimeSharedPreferences.getThursdayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setThursdayDisarm(theHour + ":" + theMinute);
+                    disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setThursdayDisarm(theHour + ":" + theMinute);
+                disarmThursday.setText(setTimeSharedPreferences.getThursdayDisarm());
+            }
         }
     }
 
@@ -440,8 +743,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setFridayArm(theHour + ":" + theMinute);
-            armFriday.setText(setTimeSharedPreferences.getFridayArm());
+            String time = setTimeSharedPreferences.getFridayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setFridayArm(theHour + ":" + theMinute);
+                    armFriday.setText(setTimeSharedPreferences.getFridayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setFridayArm(theHour + ":" + theMinute);
+                armFriday.setText(setTimeSharedPreferences.getFridayArm());
+            }
         }
     }
 
@@ -465,8 +793,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setFridayDisarm(theHour + ":" + theMinute);
-            disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+            String time = setTimeSharedPreferences.getFridayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setFridayDisarm(theHour + ":" + theMinute);
+                    disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setFridayDisarm(theHour + ":" + theMinute);
+                disarmFriday.setText(setTimeSharedPreferences.getFridayDisarm());
+            }
         }
     }
 
@@ -490,8 +843,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setSaturdayArm(theHour + ":" + theMinute);
-            armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+            String time = setTimeSharedPreferences.getSaturdayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setSaturdayArm(theHour + ":" + theMinute);
+                    armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setSaturdayArm(theHour + ":" + theMinute);
+                armSaturday.setText(setTimeSharedPreferences.getSaturdayArm());
+            }
         }
     }
 
@@ -515,8 +893,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setSaturdayDisarm(theHour + ":" + theMinute);
-            disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+            String time = setTimeSharedPreferences.getSaturdayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setSaturdayDisarm(theHour + ":" + theMinute);
+                    disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setSaturdayDisarm(theHour + ":" + theMinute);
+                disarmSaturday.setText(setTimeSharedPreferences.getSaturdayDisarm());
+            }
         }
     }
 
@@ -540,8 +943,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setSundayArm(theHour + ":" + theMinute);
-            armSunday.setText(setTimeSharedPreferences.getSundayArm());
+            String time = setTimeSharedPreferences.getSundayDisarm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                disarm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                disarm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                disarm.set(Calendar.SECOND, 0);
+
+                arm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                arm.set(Calendar.MINUTE, minute);
+                arm.set(Calendar.SECOND, 0);
+
+                if(arm.after(disarm) || arm.compareTo(disarm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setSundayArm(theHour + ":" + theMinute);
+                    armSunday.setText(setTimeSharedPreferences.getSundayArm());
+                }
+            }
+            else
+            {
+                setTimeSharedPreferences.setSundayArm(theHour + ":" + theMinute);
+                armSunday.setText(setTimeSharedPreferences.getSundayArm());
+            }
         }
     }
 
@@ -565,8 +993,33 @@ public class SetAutomaticTime extends AppCompatActivity{
             theHour = Integer.toString(hourOfDay);
             theMinute = Integer.toString(minute);
 
-            setTimeSharedPreferences.setSundayDisarm(theHour + ":" + theMinute);
-            disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+            String time = setTimeSharedPreferences.getSundayArm();
+            Calendar disarm = Calendar.getInstance();
+            Calendar arm = Calendar.getInstance();
+
+            if(!time.isEmpty())
+            {
+                String[] times = time.split(":");
+                arm.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+                arm.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+                arm.set(Calendar.SECOND, 0);
+
+                disarm.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                disarm.set(Calendar.MINUTE, minute);
+                disarm.set(Calendar.SECOND, 0);
+
+                if(disarm.before(arm) || disarm.compareTo(arm)==0)
+                    Toast.makeText(getContext(), "Invalid Entry", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    setTimeSharedPreferences.setSundayDisarm(theHour + ":" + theMinute);
+                    disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+                }
+            }
+            else{
+                setTimeSharedPreferences.setSundayDisarm(theHour + ":" + theMinute);
+                disarmSunday.setText(setTimeSharedPreferences.getSundayDisarm());
+            }
         }
     }
 
