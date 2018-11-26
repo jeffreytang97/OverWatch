@@ -100,56 +100,64 @@ public class SettingActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
 
-        armStatusSharedPreferences.setAutoArmStatus(true);
-        settingArmButton.setEnabled(false);
-        settingDisarmButton.setEnabled(true);
-
-        Log.d(TAG, "Enabled");
-        Toast.makeText(SettingActivity.this, "Enable Automatic Arm / Disarm", Toast.LENGTH_SHORT).show();
-        Calendar theTime = Calendar.getInstance();
-        String time;
-
-        Calendar c = Calendar.getInstance();
-
-        //ARM PORTION
-        time = setTimeSharedPreferences.getMondayArm();
-        String[] times = time.split(":");
-        theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
-        theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
-        theTime.set(Calendar.SECOND, 0);
-
-        if(c.before(theTime))
+        if(setTimeSharedPreferences.getMondayArm().isEmpty() || setTimeSharedPreferences.getMondayDisarm().isEmpty())
         {
-          AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-          Intent intent;
-          PendingIntent pendingIntent;
+          Toast.makeText(SettingActivity.this, "Invalid entry was put", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+          armStatusSharedPreferences.setAutoArmStatus(true);
+          settingArmButton.setEnabled(false);
+          settingDisarmButton.setEnabled(true);
 
-          intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
-          pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
+          Log.d(TAG, "Enabled");
+          Toast.makeText(SettingActivity.this, "Enable Automatic Arm / Disarm", Toast.LENGTH_SHORT).show();
+          Calendar theTime = Calendar.getInstance();
+          String time;
 
-          manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(), pendingIntent);
+          Calendar c = Calendar.getInstance();
+
+          //ARM PORTION
+          time = setTimeSharedPreferences.getMondayArm();
+          String[] times = time.split(":");
+          theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+          theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+          theTime.set(Calendar.SECOND, 0);
+
+          if(c.before(theTime))
+          {
+            AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            Intent intent;
+            PendingIntent pendingIntent;
+
+            intent = new Intent(getApplicationContext(), AutoArmReceiverMonday.class);
+            pendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,intent,0);
+
+            manager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(), pendingIntent);
+          }
+
+          c = Calendar.getInstance();
+
+          //DISARM PORTION
+          time = setTimeSharedPreferences.getMondayDisarm();
+          times = time.split(":");
+          theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
+          theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
+          theTime.set(Calendar.SECOND, 0);
+
+          if(c.before(theTime))
+          {
+            AlarmManager disarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            Intent disarmIntent;
+            PendingIntent disarmPendingIntent;
+
+            disarmIntent = new Intent(getApplicationContext(), AutoDisarmReceiverMonday.class);
+            disarmPendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,disarmIntent,0);
+
+            disarmManager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),disarmPendingIntent);
+          }
         }
 
-        c = Calendar.getInstance();
-
-        //DISARM PORTION
-        time = setTimeSharedPreferences.getMondayDisarm();
-        times = time.split(":");
-        theTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(times[0]));
-        theTime.set(Calendar.MINUTE, Integer.valueOf(times[1]));
-        theTime.set(Calendar.SECOND, 0);
-
-        if(c.before(theTime))
-        {
-          AlarmManager disarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-          Intent disarmIntent;
-          PendingIntent disarmPendingIntent;
-
-          disarmIntent = new Intent(getApplicationContext(), AutoDisarmReceiverMonday.class);
-          disarmPendingIntent = PendingIntent.getBroadcast(SettingActivity.this,0,disarmIntent,0);
-
-          disarmManager.set(AlarmManager.RTC_WAKEUP, theTime.getTimeInMillis(),disarmPendingIntent);
-        }
 
 
       }
