@@ -6,6 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".SetAutomaticTime">
 
+    <Button
+        android:id="@+id/deleteWedButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textWednesday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
+
+    <Button
+        android:id="@+id/deleteThurButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textThursday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
+
+    <Button
+        android:id="@+id/deleteFriButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textFriday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
+
+    <Button
+        android:id="@+id/deleteSatButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textSaturday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
+
+    <Button
+        android:id="@+id/deleteSunButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textSunday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
+
     <View
         android:id="@+id/divider5"
         android:layout_width="match_parent"
@@ -361,4 +401,20 @@
         android:inputType="time"
         android:focusable="false"
         android:hint="Disarm" />
+
+    <Button
+        android:id="@+id/deleteTuesdayButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textTuesday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
+
+    <Button
+        android:id="@+id/deleteMondayButton"
+        android:layout_width="56dp"
+        android:layout_height="38dp"
+        android:layout_alignBaseline="@+id/textMonday"
+        android:layout_alignParentEnd="true"
+        android:text="Del" />
 </RelativeLayout>

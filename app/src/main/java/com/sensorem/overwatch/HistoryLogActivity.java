@@ -60,7 +60,6 @@ public class HistoryLogActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        dbhelper.deleteEventIf24hour(currentDateTime);
     }
 
     //To show the 3 dots button on the action bar
@@ -94,7 +93,7 @@ public class HistoryLogActivity extends AppCompatActivity {
         }
         if (id == R.id.logOutButton_log){
             codesSharedPreferences.setIsLogged(false);
-            armStatusSharedPreferences.setArmStatus(false);
+            armStatusSharedPreferences.setArmStatus(0);
             Intent logoutIntent = new Intent(this, MainActivity.class);
             startActivity(logoutIntent);
         }

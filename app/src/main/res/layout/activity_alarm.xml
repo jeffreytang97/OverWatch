@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,164 +25,142 @@
         android:id="@+id/textView"
         android:layout_width="189dp"
         android:layout_height="31dp"
+        android:layout_alignStart="@+id/armButton"
+        android:layout_alignLeft="@+id/armButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="235dp"
         android:text="Sensor Status"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="164dp"
         android:layout_height="28dp"
+        android:layout_alignStart="@+id/armButton"
+        android:layout_alignLeft="@+id/armButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="185dp"
         android:text="Movement detector"
         android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/movementDetectorTextView"
         android:layout_width="328dp"
         android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="135dp"
         android:text="There is currently no movement detected."
-        android:textColor="#D82E0A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.322" />
+        android:textColor="#D82E0A" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="112dp"
         android:layout_height="27dp"
+        android:layout_alignStart="@+id/armButton"
+        android:layout_alignLeft="@+id/armButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="85dp"
         android:text="Door Status"
         android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movementDetectorTextView"
-        app:layout_constraintVertical_bias="0.216" />
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/image_man"
         android:layout_width="58dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="149dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="149dp"
-        android:layout_marginStart="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/movementDetectorTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.245"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
         app:srcCompat="@drawable/stickman" />
 
     <ImageView
         android:id="@+id/image_door"
         android:layout_width="49dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/doorStatusTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/movementDetectorTextView"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="-1dp"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
         app:srcCompat="@drawable/door" />
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="395dp"
-        android:layout_height="306dp"
-        android:layout_marginTop="252dp"
-        android:background="?android:attr/listDivider"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:backgroundTint="" />
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="147dp"
         android:layout_height="131dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cadenas" />
 
     <TextView
         android:id="@+id/doorStatusTextView"
         android:layout_width="328dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="27dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="35dp"
         android:text="The door is currently closed."
-        android:textColor="#D82E0A"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_door" />
+        android:textColor="#D82E0A" />
 
     <Button
         android:id="@+id/armButton"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginBottom="57dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="174dp"
+        android:layout_toStartOf="@+id/imageView12"
         android:text="Arm"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_toLeftOf="@+id/imageView12" />
 
     <Button
         android:id="@+id/diarmButton"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginBottom="57dp"
+        android:layout_alignTop="@+id/armButton"
+        android:layout_toEndOf="@+id/imageView12"
         android:text="disarm"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_toRightOf="@+id/imageView12" />
+
+    <Button
+        android:id="@+id/stayHomeButton"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@+id/armButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="Home" />
 
     <TextView
         android:id="@+id/alarmStatusTextView"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginRight="42dp"
-        android:layout_marginBottom="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
         android:gravity="center"
-        android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="24sp" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

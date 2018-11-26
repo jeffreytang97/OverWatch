@@ -21,9 +21,11 @@
         </activity>
         <activity android:name=".AlarmActivity" />
         <activity android:name=".HistoryLogActivity" />
-        <activity android:name=".SettingActivity"></activity>
-        <activity android:name=".SetAutomaticTime"></activity>
-        <receiver android:name=".AlarmTriggerReceiver"></receiver>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".SetAutomaticTime" />
+        <receiver android:name=".AlarmTriggerReceiver" />
+        <receiver android:name=".AutoArmReceiverMonday"/>
+        <receiver android:name=".AutoDisarmReceiverMonday"/>
     </application>
 
 </manifest>

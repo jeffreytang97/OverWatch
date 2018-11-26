@@ -6,23 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity">
 
-    <Switch
-        android:id="@+id/settingEditSwitch"
-        android:layout_width="277dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
-        android:text="Auto Disarm / Arm"
-        android:textSize="16dp" />
-
     <Button
         android:id="@+id/settingChangePasscodeButton"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
-        android:layout_alignEnd="@+id/settingEditSwitch"
+        android:layout_alignEnd="@+id/settingEditAutoButton"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="171dp"
+        android:layout_marginTop="170dp"
         android:text="Change" />
 
     <TextView
@@ -30,7 +20,7 @@
         android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/settingChangePasscodeButton"
-        android:layout_alignStart="@+id/settingEditSwitch"
+        android:layout_alignStart="@+id/settingEditAutoButton"
         android:text="Edit Passcode"
         android:textColor="#000000"
         android:textSize="16dp" />
@@ -73,5 +63,24 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:text="Edit Automatic Disarm / Arm time" />
+
+    <Button
+        android:id="@+id/settingAutoArm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="94dp"
+        android:text="Auto Scheduling" />
+
+    <Button
+        android:id="@+id/settingAutoDisarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/settingAutoArm"
+        android:layout_marginEnd="20dp"
+        android:text="Disable Scheduling" />
 
 </RelativeLayout>
