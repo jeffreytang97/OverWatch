@@ -82,10 +82,10 @@ public class CloudDatabase extends android.app.Application {
         motionRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot ds) {
-              Log.d(TAG, "Movement value changed");
-              Boolean isMotionDetected = ds.getValue(Boolean.class);
-              status.setMotionDetected(isMotionDetected);
-              getTime();
+                Log.d(TAG, "Movement value changed");
+                Boolean isMotionDetected = ds.getValue(Boolean.class);
+                status.setMotionDetected(isMotionDetected);
+                getTime();
 
                 if(loginStatus.getIsLogged()){
                     if((currentTimeSharedPref.getCurrentHour() != hour) || (currentTimeSharedPref.getCurrentMinute() != minutes) ||  (currentTimeSharedPref.getCurrentSecond() != seconds)){

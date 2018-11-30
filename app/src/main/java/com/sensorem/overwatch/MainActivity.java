@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     public String theCode = "123";
 
     private CodesSharedPreferences sharedPrefsLoginCode;
-    private ArmStatusSharedPreferences armStatusSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         codeEditText = findViewById(R.id.codeEditText);
         loginButton = findViewById(R.id.loginButton);
-        armStatusSharedPreferences = new ArmStatusSharedPreferences(MainActivity.this);
         //sharedPrefsLoginCode.setLoginCode(theCode); // save the code somewhere for future feature (change code example) NOT NEEDED
-
-        if(armStatusSharedPreferences.getArmStatus()==-1)
-            armStatusSharedPreferences.setArmStatus(0);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
